@@ -16,6 +16,9 @@ const postSchema = new mongoose.Schema({
   isPinned: {
     type: Boolean,
     default: false,
+  },
+  userId: {
+    type: String,
   }
 },
   {timestamps: true});
