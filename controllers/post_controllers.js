@@ -38,4 +38,14 @@ router.get("/:postId", (req, res, next) => {
   });
 });
 
+// Delete Route
+router.delete("/:postId", (req, res) => {
+  posts.findByIdAndDelete(req.params.postId, (error, deletedPost) => {
+    if (error) return console.log(error);
+
+    console.log(deletedPost);
+    return res.redirect("/posts");
+  });
+});
+
 module.exports = router;

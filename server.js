@@ -1,5 +1,6 @@
 // External Modules
 const express = require("express");
+const methodOverride = require("method-override");
 
 // Create the express app
 const app = express();
@@ -21,6 +22,8 @@ app.use((req, res, next) => {
 });
 
 app.use(express.urlencoded({extended: true}));
+
+app.use(methodOverride("_method"));
 
 // Routes
 app.get("/", (req, res) => {

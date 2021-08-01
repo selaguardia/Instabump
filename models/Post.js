@@ -70,8 +70,26 @@ create(data, callBack) {
 
   return callBack(error, newItem);
 }
-}
 
+findByIdAndDelete( itemId, callBack ) {
+  let error = null;
+  const item = this.#items.find((item, idx ) => { 
+	  let foundItem;
+	  if (item.id === itemId) {
+		  /* remove one element */
+		  foundItem = this.#items.splice(idx, 1);
+	   }
+
+	   return foundItem;
+   });
+
+    if (!item) {
+      error = { message: `item can't be found` };
+    }
+
+    return callBack(error, item);
+  }
+}
 // at the bottom 
 module.exports = new Collection(Post, [
   {
