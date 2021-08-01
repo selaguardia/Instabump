@@ -38,6 +38,28 @@ router.get("/:postId", (req, res, next) => {
   });
 });
 
+// Edit Route
+router.get("/:postId/edit", (req, res) => {
+  posts.findById(req.params.postId, (error, foundPost) => {
+    if (error) return console.log(error);
+
+    return res.render("edit.ejs", {post: foundPost});
+  });
+});
+
+// Update Route
+router.put("/:postId", (req, res) => {
+  posts.findByIdAndUpdate(
+    req.params.postId,
+    req.body,
+    (error, updatedPost) => {
+      if (error) return console.log(error);
+
+      return res.redirect(`/posts/${updatedPost.id}`);
+    },
+  );
+});
+
 // Delete Route
 router.delete("/:postId", (req, res) => {
   posts.findByIdAndDelete(req.params.postId, (error, deletedPost) => {

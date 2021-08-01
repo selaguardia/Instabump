@@ -89,6 +89,24 @@ findByIdAndDelete( itemId, callBack ) {
 
     return callBack(error, item);
   }
+
+  findByIdAndUpdate( itemId, data, callBack ) {
+    let error = null;
+    const item = this.#items.find(({ id }) => id === itemId);
+
+    if (!item) {
+      error = { message: `item can't be found` };
+    }
+
+    for (const key in item) {
+      if (key === 'id') continue;
+
+      item[key] = data[key];
+    }
+
+    return callBack(error, item);
+  }
+
 }
 // at the bottom 
 module.exports = new Collection(Post, [
