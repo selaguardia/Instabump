@@ -4,13 +4,11 @@ const express = require("express");
 // Create the express app
 const app = express();
 
-
 // PORT
 const PORT = 4000;
 
-// Temporary Database
-// const posts = ["Image 1", "Image 2", "Image 3"];
-const posts = require("./models/Post");
+// Internal Modules
+const postCtrls = require("./controllers/post_controllers");
 
 // App Config
 app.set("view engine", "ejs");
@@ -19,7 +17,6 @@ app.use(express.static("public"));
 // Middleware
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);
-
   next();
 });
 
@@ -27,45 +24,10 @@ app.use(express.urlencoded({extended: true}));
 
 // Routes
 app.get("/", (req, res) => {
-  res.redirect("/home");
+  res.redirect("/posts");
 });
 
-// Index Route
-app.get("/posts/", (req, res) => {
-  const allPosts = posts.find();
-
-  const context = {posts: allPosts};
-
-  res.render("index.ejs", context);
-});
-
-// Create Route
-app.get("/posts/new", (req, res) => {
-  res.render("new.ejs");
-});
-
-app.post("/posts/", (req, res) => {
-  posts.create(req.body, (error, createdPost) => {
-    if (error) return console.log(error);
-
-    console.log(createdPost);
-    return res.redirect("/posts");
-  });
-});
-
-// Show Route
-app.get("/posts/:postId", (req, res, next) => {
-  posts.findById(req.params.postId, (error, foundPost) => {
-    if (error) {
-      console.log(error);
-      req.error = error;
-      return next();
-    };
-
-    const context = {post: foundPost};
-    return res.render("show.ejs", context);
-  });
-});
+app.use("/posts", postCtrls);
 
 // 404 Route
 app.get("/*", (req, res) => {
