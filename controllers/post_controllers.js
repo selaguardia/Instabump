@@ -3,13 +3,29 @@ const router = express.Router();
 const db = require("../models/Post")
 
 // Temporary DB
-const posts = require("../models/Post");
+// const posts = require("../models/Post");
 
 // Index Route
-router.get("/", (req, res) => {
+/* router.get("/", (req, res) => {
   const allPosts = posts.find();
   res.render("index.ejs", {posts: allPosts});
+}); */
+router.get("/", (req, res) => {
+  db.Post.find({}, (error, allPosts) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+
+    const context = {
+      posts: allPosts,
+    };
+
+    res.render("index", context);
+  });
 });
+
 
 // New Product Form Route
 router.get("/new", (req, res) => {
@@ -17,17 +33,32 @@ router.get("/new", (req, res) => {
 });
 
 // Create New Product Route
-router.post("/", (req, res) => {
+/* router.post("/", (req, res) => {
   posts.create(req.body, (error, createdPost) => {
     if (error) return console.log(error);
 
     console.log(createdPost);
     return res.redirect("/posts");
   });
+}); */
+router.post("/", (req, res, next) => {
+  db.Post.create(req.body, (error, createdPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+
+      const context = {
+        error,
+      };
+
+      return res.render("new", context);
+    }
+    return res.redirect(`/posts`);
+  });
 });
 
 // Show Route
-router.get("/:postId", (req, res, next) => {
+/* router.get("/:postId", (req, res, next) => {
   posts.findById(req.params.postId, (error, foundPost) => {
     if (error) {
       console.log(error);
@@ -36,6 +67,22 @@ router.get("/:postId", (req, res, next) => {
     };
 
     return res.render("show.ejs", {post: foundPost});
+  });
+}); */
+router.get("/:id", (req, res, next) => {
+
+  db.Post.findById(req.params.id, (error, foundPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+
+    const context = {
+      post: foundPost,
+    };
+
+    return res.render("show", context);
   });
 });
 
