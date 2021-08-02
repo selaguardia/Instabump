@@ -90,6 +90,17 @@ router.put("/:id", (req, res, next) => {
     });
 });
 
+// Delete Route
+router.delete("/:id", (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
 
+    return res.redirect("/posts");
+  });
+});
 
 module.exports = router;
