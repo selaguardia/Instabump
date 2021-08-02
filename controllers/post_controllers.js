@@ -87,11 +87,26 @@ router.get("/:id", (req, res, next) => {
 });
 
 // Edit Route
-router.get("/:postId/edit", (req, res) => {
+/* router.get("/:postId/edit", (req, res) => {
   posts.findById(req.params.postId, (error, foundPost) => {
     if (error) return console.log(error);
 
     return res.render("edit.ejs", {post: foundPost});
+  });
+}); */
+router.get("/:id/edit", (req, res, next) => {
+  db.Post.findById(req.params.id, (error, foundPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+
+    const context = {
+      post: foundPost,
+    };
+
+    return res.render("edit", context);
   });
 });
 
