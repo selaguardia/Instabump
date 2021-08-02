@@ -109,11 +109,22 @@ router.put("/:postId", (req, res) => {
 });
 
 // Delete Route
-router.delete("/:postId", (req, res) => {
+/* router.delete("/:postId", (req, res) => {
   posts.findByIdAndDelete(req.params.postId, (error, deletedPost) => {
     if (error) return console.log(error);
 
     console.log(deletedPost);
+    return res.redirect("/posts");
+  });
+}); */
+router.delete("/:id", (req, res, next) => {
+  db.Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+    
     return res.redirect("/posts");
   });
 });
