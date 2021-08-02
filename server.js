@@ -32,6 +32,9 @@ function logger(req, res, next) {
 }
 app.use(logger);
 
+// Navlink Location
+app.use(require("./utils/navlinks"));
+
 // Routes
 app.get("/", (req, res) => {
   res.redirect("/posts");
