@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../models/Post")
 
 // Temporary DB
 const posts = require("../models/Post");

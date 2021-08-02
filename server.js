@@ -1,6 +1,7 @@
 // External Modules
 const express = require("express");
 const methodOverride = require("method-override");
+require("./config/db.connection");
 
 // Create the express app
 const app = express();
@@ -24,6 +25,13 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({extended: true}));
 
 app.use(methodOverride("_method"));
+
+// Custom Middleware Logger
+function logger(req, res, next) {
+  console.log(`${req.url}: ${req.method} - ${new Date().toLocaleTimeString()}`);
+  next();
+}
+app.use(logger);
 
 // Routes
 app.get("/", (req, res) => {
