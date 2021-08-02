@@ -42,6 +42,7 @@ app.get("/", (req, res) => {
 
 app.use("/posts", controllers.post);
 app.use("/users", controllers.user);
+app.use("/", controllers.auth);
 
 // 404 Route
 app.get("/*", (req, res) => {
