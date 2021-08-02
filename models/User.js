@@ -34,3 +34,29 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+
+
+// Seed Data
+/* [
+  {
+    email: "1234abcd@gmail.com",
+    password: "password",
+    username: "User 1",
+    avatar: "https://picsum.photos/200",
+    fullName: "John Smith"
+  },
+  {
+    email: "1234abcd@gmail.com",
+    password: "password",
+    username: "User 2",
+    avatar: "https://picsum.photos/200",
+    fullName: "Sam Smith"
+  },
+  {
+    email: "1234abcd@gmail.com",
+    password: "password",
+    username: "User 3",
+    avatar: "https://picsum.photos/200",
+    fullName: "Will Smith"
+  },
+] */

@@ -26,3 +26,33 @@ const postSchema = new Schema({
 
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
+
+
+// Seed Data
+/* [
+  {
+    caption: "Photo 1",
+    bumpCount: 0,
+    image:
+      "https://picsum.photos/200",
+    isPinned: false,
+    userId: "1234abcd",
+  },
+  {
+    caption: "Photo 2",
+    bumpCount: 0,
+    image:
+      "https://picsum.photos/200",
+    isPinned: false,
+    userId: "1234abcd",
+  },
+  {
+    caption: "Photo 3",
+    bumpCount: 0,
+    image:
+      "https://picsum.photos/200",
+    isPinned: false,
+    userId: "1234abcd",
+  },
+
+] */
