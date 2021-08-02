@@ -73,4 +73,23 @@ router.get("/:id/edit", (req, res, next) => {
   });
 });
 
+// Update Route
+router.put("/:id", (req, res, next) => {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    {$set: {...req.body}},
+    {new: true},
+    (error, updatedPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      }
+
+      return res.redirect(`/posts/${updatedPost.id}`);
+    });
+});
+
+
+
 module.exports = router;
