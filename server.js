@@ -1,7 +1,7 @@
 // External Modules
 const express = require("express");
 const methodOverride = require("method-override");
-require(".config/db.connection");
+require("./config/db.connection");
 
 // Create the express app
 const app = express();
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
   res.redirect("/posts");
 });
 
-app.use("/posts", controllers);
+app.use("/posts", controllers.post);
 
 // 404 Route
 app.get("/*", (req, res) => {
