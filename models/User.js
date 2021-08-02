@@ -20,6 +20,10 @@ const userSchema = new Schema({
     type: String,
     default: "https://pbs.twimg.com/profile_images/1237550450/mstom_400x400.jpg",
   },
+  fullName: {
+    type: String,
+    required: [true, "Please enter your full name."]
+  }
 },
   {
     timestamps: true
