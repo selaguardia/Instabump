@@ -111,7 +111,7 @@ router.get("/:id/edit", (req, res, next) => {
 });
 
 // Update Route
-router.put("/:postId", (req, res) => {
+/* router.put("/:postId", (req, res) => {
   posts.findByIdAndUpdate(
     req.params.postId,
     req.body,
@@ -121,6 +121,22 @@ router.put("/:postId", (req, res) => {
       return res.redirect(`/posts/${updatedPost.id}`);
     },
   );
+}); */
+router.put("/id:", (req, res, next) => {
+  db.Post.findByIdAndUpdate(
+    req.params.id,
+    {$set: {...req.body},
+  },
+  {new: true},
+  (error, updatedPost) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+
+    return res.redirect(`/posts/${updatedPost.id}`);
+  });
 });
 
 // Delete Route
