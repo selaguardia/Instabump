@@ -10,7 +10,7 @@ const app = express();
 const PORT = 4000;
 
 // Internal Modules
-const controllers = require("./controllers/");
+const controllers = require("./controllers");
 
 // App Config
 app.set("view engine", "ejs");
@@ -38,6 +38,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/posts", controllers.post);
+app.use("/users", controllers.user);
 
 // 404 Route
 app.get("/*", (req, res) => {
