@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { User } = require("../models");
+const { User, Post } = require("../models");
 
 // Index Route
 router.get("/", (req, res) => {
@@ -21,18 +21,20 @@ router.get("/", (req, res) => {
 
 // Show Route
 router.get("/:id", (req, res, next) => {
-  User.findById(req.params.id, (error, foundPost) => {
+  User.findById(req.params.id, (error, foundUser) => {
     if (error) {
       console.log(error);
       req.error = error;
       return next();
     }
-
-    const context = {
-      user: foundUser,
-    };
-
-    return res.render("users/show", context);
+    Post.find({user: req.params.id}, (error, allPosts) => {
+      const context = {
+        user: foundUser,
+        post: allPosts,
+      };
+      
+      return res.render("users/show", context);
+    });    
   });
 });
 

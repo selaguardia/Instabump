@@ -19,7 +19,8 @@ const postSchema = new Schema({
     default: false,
   },
   userId: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   }
 },
   {timestamps: true});
@@ -36,7 +37,7 @@ module.exports = Post;
     image:
       "https://picsum.photos/200",
     isPinned: false,
-    userId: "1234abcd",
+    userId: "61086233d293a47694f9c1fe",
   },
   {
     caption: "Photo 2",
@@ -44,7 +45,7 @@ module.exports = Post;
     image:
       "https://picsum.photos/200",
     isPinned: false,
-    userId: "1234abcd",
+    userId: "61086233d293a47694f9c1ff",
   },
   {
     caption: "Photo 3",
@@ -52,7 +53,7 @@ module.exports = Post;
     image:
       "https://picsum.photos/200",
     isPinned: false,
-    userId: "1234abcd",
+    userId: "61086233d293a47694f9c200",
   },
 
 ] */

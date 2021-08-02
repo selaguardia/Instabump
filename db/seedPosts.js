@@ -12,7 +12,7 @@ Post.deleteMany({}, function (error, deletedPosts) {
         image:
           "https://picsum.photos/200",
         isPinned: false,
-        userId: "1234abcd",
+        userId: "61086233d293a47694f9c1fe",
       },
       {
         caption: "Photo 2",
@@ -20,7 +20,7 @@ Post.deleteMany({}, function (error, deletedPosts) {
         image:
           "https://picsum.photos/200",
         isPinned: false,
-        userId: "1234abcd",
+        userId: "61086233d293a47694f9c1ff",
       },
       {
         caption: "Photo 3",
@@ -28,7 +28,7 @@ Post.deleteMany({}, function (error, deletedPosts) {
         image:
           "https://picsum.photos/200",
         isPinned: false,
-        userId: "1234abcd",
+        userId: "61086233d293a47694f9c200",
       },
     
     ],
