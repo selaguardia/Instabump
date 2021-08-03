@@ -3,19 +3,32 @@ const router = express.Router();
 const { Post, User } = require("../models");
 
 // Index route
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Post.find({}, (error, allPosts) => {
     if (error) {
       console.log(error);
       req.error = error;
       return next();
     }
+    allPosts.forEach(post => {
+        console.log('post userid:', post.userId);
+        User.findById(post.userId, (error, oneUser) => {
+          if (error) {
+            console.log(error);
+            req.error = error;
+            return next();
+          };
+          console.log('oneUsername:', oneUser.username);
+          const context = {
+            posts: allPosts,
+            user: oneUser,
+          };
+          res.render("posts/index", context);
+        });
+    });
+    
 
-    const context = {
-      posts: allPosts,
-    };
 
-    res.render("posts/index", context);
   });
 });
 
