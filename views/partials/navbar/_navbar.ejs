@@ -1,26 +1,19 @@
-<nav
-  class="navbar is-dark is-fixed-top"
-  role="navigation"
-  aria-label="main navigation"
->
+<div class="navbar is-inline-flex is-transparent">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/products">
-      <img src="/assets/favicon-32x32.png" class="is-16x16 mr-2" />
-      All Products
-    </a>
-
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbarBasicExample"
-    >
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
+      <a class="navbar-item">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="Bulma">
+      </a>
   </div>
+
+  <div class="navbar-item is-flex-touch">
+      <a class="navbar-item">
+          <i class="material-icons">Pinned Feed</i>
+      </a>
+      <a class="navbar-item">
+          <i class="material-icons">Your Profile</i>
+      </a>
+  </div>
+</div>
 
   <!-- this will add a link to the new route -->
   <div class="navbar-menu navbar-end">
@@ -33,4 +26,4 @@
     <a class="navbar-item" href="<%= route.href %>"> <%= route.title %> </a>
     <% }) %> <% } %>
   </div>
-</nav>
+
