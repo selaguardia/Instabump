@@ -50,7 +50,7 @@ router.post("/", (req, res, next) => {
       return next();
     }
     
-    return res.redirect(`/users/${user.id}`);
+    return res.redirect(`/posts`);
   });
 });
 
