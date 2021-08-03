@@ -34,19 +34,14 @@ app.use(
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.originalUrl}`);
   // View the sessions with our requests
-  console.log(req.session);
   next();
 });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
-// Custom Middleware Logger
-function logger(req, res, next) {
-  console.log(`${req.url}: ${req.method} - ${new Date().toLocaleTimeString()}`);
-  next();
-}
-app.use(logger);
+// Logger Location
+app.use(require("./utils/logger"));
 
 // Navlink Location
 app.use(require("./utils/navlinks"));
