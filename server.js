@@ -32,8 +32,7 @@ app.use(
 
 // Middleware
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.originalUrl}`);
-  // View the sessions with our requests
+  res.locals.user = req.session.currentUser;
   next();
 });
 
