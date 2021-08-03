@@ -36,4 +36,29 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Login Post Route
+router.post("/login", async function (req, res) {
+  try {
+    const foundUser = await User.findOne({email: req.body.email});
+    console.log(foundUser);
+
+    if (!foundUser) return res.redirect("/register");
+
+    const match = await bcrypt.compare(req.body.password, foundUser.password);
+
+    if (!match) return res.send("Password invalid.");
+
+    req.session.currentUser = {
+      id: foundUser._id,
+      username: foundUser.username,
+    };
+
+    return res.redirect("/posts");
+
+  } catch (error) {
+    console.log(error);
+    return res.send(error);
+  }
+});
+
 module.exports = router;
