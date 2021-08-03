@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head partial -->
+  <%- include('../partials/head/_head', { page: product.name }) %>
+
+  <body class="has-navbar-fixed-top">
+    <!-- Navbar Partial -->
+    <%- include('../partials/navbar/_navbar', { routes } ) %>
+
+    <section class="hero is-medium has-background-light">
+      <div class="hero-body">
+        <h1 class="title">Product Show Page</h1>
+      </div>
+    </section>
+
+    <div class="container is-max-widescreen p-5">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-328x328">
+            <img src="<%= product.image %>" alt="product img" />
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <h3>name: <%= product.name %></h3>
+            <small>price: <%= product.price %></small>
+
+            <div class="field mt-5 is-grouped">
+              <p class="control">
+                <a
+                  class="button is-info"
+                  href="/products/<%= product.id %>/edit"
+                  >Edit Product</a
+                >
+              </p>
+              <p class="control">
+                <button class="button is-danger toggle-modal">
+                  Delete Product
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- reviews -->
+    <section class="hero is-small is-info">
+      <div class="hero-body">
+        <h2 class="title">Reviews</h2>
+      </div>
+    </section>
+    <div class="columns p-5">
+      <section class="column is-one-quarter">
+        <div class="box is-flex-direction-column">
+          <form action="/reviews" method="POST">
+            <div class="field">
+              <label class="label">Rating</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="number"
+                  name="rating"
+                  min="0"
+                  max="5"
+                  placeholder="0-5"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Content</label>
+              <div class="control">
+                <textarea
+                  name="content"
+                  class="textarea"
+                  placeholder="Leave a review!"
+                ></textarea>
+              </div>
+            </div>
+            <!-- Here is our hidden input to provide the product id -->
+            <input type="hidden" name="product" value="<%= product._id %>" />
+            <div class="control">
+              <button class="button is-link is-fullwidth">Submit</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="column">
+        <% reviews.forEach(review => { %>
+
+        <div class="box">
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src="https://picsum.photos/200" alt="Image" />
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <strong>John Smith</strong>
+                <small>
+                  <%= new Date(review.createdAt).toLocaleString() %>
+                </small>
+                <br />
+                <!-- create our stars -->
+
+                <% for( let index = 0; index < 5; index++ ) { %> <% if
+                (review.rating > index) { %>
+                <span class="icon">
+                  <i class="fas fa-star yellow"></i>
+                </span>
+                <% } else { %>
+                <span class="icon">
+                  <i class="fas fa-star"></i>
+                </span>
+                <% } %> <% } %>
+
+                <br />
+                <%= review.content %>
+              </div>
+            </div>
+            <div class="media-right">
+              <section class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link"></a>
+                <div class="navbar-dropdown">
+                  <a class="button is-primary m-2 navbar-item"> Edit </a>
+                  <hr class="navbar-divider" />
+                  <a class="button is-danger m-2 navbar-item">Remove</a>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+
+        <% }) %>
+      </section>
+    </div>
+
+    <!-- Are you sure MOdal -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Modal title</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          Are you sure you want to delete <%= product.name %> ?
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button toggle-modal mr-4">Cancel</button>
+          <form
+            action="/products/<%= product.id %>?_method=DELETE"
+            method="POST"
+          >
+            <input class="button is-danger" type="submit" value="Confirm" />
+          </form>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
