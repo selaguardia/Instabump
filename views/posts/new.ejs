@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+  <body class="has-navbar-fixed-top">
+    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
+    <%- include('../partials/navbar/_navbar', { routes } ) %>
+    <section class="hero is-medium has-background-light">
+      <div class="hero-body">
+        <h1 class="title">New Post Page</h1>
+      </div>
+    </section>
+
+    <section class="container is-max-widescreen p-5">
+      <form action="/posts" method="POST">
+        <% if (typeof error !== 'undefined') { %>
+          <article class="message is-danger">
+            <div class="message-header">
+              <p>Danger</p>
+            </div>
+            <div class="message-body">
+              <%= error.message %> 
+            </div>
+          </article>
+        <% } %>
+
+        <div class="field">
+          <label for="post-caption" class="label">Post Caption</label>
+
+          <div class="control">
+            <input 
+              type="text" 
+              class="input" 
+              placeholder="Super Cool post" 
+              name="caption" 
+              id="post-caption">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="post-image" class="label">Post Image</label>
+          <div class="control">
+            <input
+              id="post-image"
+              class="input"
+              type="text"
+              placeholder="http://"
+              name="image"
+            />
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-info">Create post</button>
+          </div>
+        </div>
+
+      </form>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>    
+<html lang="en">
+	<!-- head -->
+	<%- include( '../partials/head/_head.ejs', { page: user.username } ) %> 
+<body>
+    <!-- Navbar Partial -->
+    <%- include('../partials/navbar/_navbar', { routes } ) %>
+    <div class="container">
+        <div class="section">
+          <div class="columns">
+            <div class="column has-text-centered">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                        <img src="<%= user.avatar %>" alt="Placeholder image">
+                    </figure>
+                </div>
+                <h1 class="title" style="color: rgb(8, 8, 12);"><%= user.fullName %></h1><br>
+            </div>
+          </div>
+          <!-- posts below our article inside container -->
+      <section class="hero is-small is-info">
+        <div class="hero-body">
+          <h2 class="title">Users Posts</h2>
+        </div>
+      </section>
+      <div class="columns p-5">
+       <section class="column">
+          <% post.forEach(post => { %>
+
+          <div class="box">
+            <article class="media">
+              <div class="media-left">
+                <figure class="image is-64x64">
+                  <img src=" <%= post.image %> " alt="Image" />
+                </figure>
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <strong><%= user.fullName %></strong>
+                  <small>
+                    <%= new Date(post.createdAt).toLocaleString() %>
+                  </small>
+                  <br />
+
+
+          <% }) %>
+        </section>
+      </div>
+        </div>
+      </div>
+</body>
+</html>

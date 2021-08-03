@@ -19,6 +19,21 @@ router.get("/", (req, res) => {
   });
 });
 
+// Index with Populate from User
+router.get("/", (req, res) => {
+  Post.find({})
+    .populate("user")
+    .exec((error, allPosts) => {
+      if(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      }
+      const context = {posts: allPosts};
+      return res.render("posts/index", context);
+    });
+});
+
 // New Post Form Route
 router.get("/new", (req, res) => {
   res.render("posts/new");
@@ -26,16 +41,16 @@ router.get("/new", (req, res) => {
 
 // Create New Post Route
 router.post("/", (req, res, next) => {
+  req.body.user = req.session.currentUser.id;
+
   Post.create(req.body, (error, createdPost) => {
     if (error) {
       console.log(error);
       req.error = error;
-
-      const context = {error};
-
-      return res.render("/posts/new", context);
-    };
-    return res.redirect(`/posts/${createdPost.id}`);
+      return next();
+    }
+    
+    return res.redirect(`/posts`);
   });
 });
 

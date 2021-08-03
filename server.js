@@ -32,9 +32,8 @@ app.use(
 
 // Middleware
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.originalUrl}`);
-  // View the sessions with our requests
-  next();
+  res.locals.user = req.session.currentUser;
+  return next();
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +44,15 @@ app.use(require("./utils/logger"));
 
 // Navlink Location
 app.use(require("./utils/navlinks"));
+
+// Auth Required
+const authRequired = function (req, res, next) {
+  if (req.session.currentUser) {
+    return next();
+  }
+
+  return res.redirect("/login");
+};
 
 // Routes
 app.get("/", (req, res) => {
