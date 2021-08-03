@@ -1,27 +1,17 @@
 <!DOCTYPE html>    
 <html lang="en">
 	<!-- head -->
-	<%- include( './partials/head/_head.ejs', { page: 'Posts' } ) %> 
+	<%- include( '../partials/head/_head.ejs', { page: 'Posts' } ) %> 
 <body>
     <!-- Navbar Partial -->
-    <%- include('./partials/navbar/_navbar', { routes } ) %>
+    <%- include('../partials/navbar/_navbar', { routes } ) %>
+
 <div class="columns body-columns">
     <div class="column is-half is-offset-one-quarter">
-    <% posts.forEach(post) => { %>
+            <% for(let idx = 0; idx < posts.length; idx++){ %> <% const post =
+        posts[idx] %>
         <div class="card">
-            <div class="header">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="<%= user.avatar %>" alt="Placeholder image">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4"><%= user.fullName %></p>
-                        <p class="subtitle is-6"><%= user.username %></p>
-                    </div>
-                </div>
-            </div>
+
             <div class="card-image">
                 <figure class="image is-4by3">
                     <img src="<%= post.image %>" alt="Placeholder image">
