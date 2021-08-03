@@ -11,14 +11,14 @@ User.deleteMany({}, function (error, deletedUsers) {
         email: "1234abcd@gmail.com",
         password: "password",
         username: "User 1",
-        avatar: "https://picsum.photos/200",
+        avatar: "https://picsum.photos/50",
         fullName: "John Smith"
       },
       {
         email: "234abcd@gmail.com",
         password: "password",
         username: "User 2",
-        avatar: "https://picsum.photos/200",
+        avatar: "https://picsum.photos/50",
         fullName: "Sam Smith"
       },
       {
