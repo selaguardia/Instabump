@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  
+  <!-- Head partial -->
+  <%- include('../partials/head/_head', { page: 'New Post' }) %> 
+
+  <body class="has-navbar-fixed-top">
+   
+     <!-- Navbar Partial -->
+     <%- include('../partials/navbar/_navbar', { routes } ) %> 
+     
+    <section class="hero is-medium has-background-light">
+      <div class="hero-body">
+        <h1 class="title">Upload new post page</h1>
+      </div>
+    </section>
+
+    <section class="container is-max-widescreen p-5">
+      <form action="/products" method="POST">
+        <% if (typeof error !== 'undefined') { %>
+          <article class="message is-danger">
+            <div class="message-header">
+              <p>Danger</p>
+            </div>
+            <div class="message-body">
+              <%= error.message %> 
+            </div>
+          </article>
+        <% } %>
+
+        <div class="field">
+          <label for="product-name" class="label">Product Name</label>
+
+          <div class="control">
+            <input 
+              type="text" 
+              class="input" 
+              placeholder="Super Cool Product" 
+              name="name" 
+              id="product-name">
+          </div>
+        </div>
+
+         <div class="field">
+          <label for="product-price" class="label">Product Price</label>
+          <div class="control">
+            <input 
+            id="product-price"
+              class="input"  
+              type="number"
+              min="0" 
+              placeholder="32" 
+              name="price" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="product-image" class="label">Product Image</label>
+          <div class="control">
+            <input
+              id="product-image"
+              class="input"
+              type="text"
+              placeholder="http://"
+              name="image"
+            />
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-info">Create Product</button>
+          </div>
+        </div>
+
+      </form>
+    </section>
+  </body>
+</html>

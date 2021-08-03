@@ -1,5 +1,6 @@
 * {box-sizing: border-box}
 
+
 /* Full-width input fields */
   input[type=text], input[type=password] {
   width: 100%;
@@ -67,6 +68,24 @@ button:hover {
   }
 }
 
-.entireForm {
-  padding: 200px;;
+/* Sell it up css */
+
+.is-328x328 {
+  width: 328px;
+  height: 328px;
 }
+.is-328x328 img {
+  width: 328px;
+  height: 328px;
+  object-fit: cover;
+}
+
+a {
+  color: #673ab7;
+}
+
+.yellow {
+  color: goldenrod;
+}
+
+/*# sourceMappingURL=main.css.map */
