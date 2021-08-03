@@ -5,21 +5,13 @@
       </a>
   </div>
 
-  <div class="navbar-item is-flex-touch">
-      <a class="navbar-item">
-          <i class="material-icons">Pinned Feed</i>
-      </a>
-      <a href="/users/<% user.username._id %> " class="navbar-item">
-          <i class="material-icons">Your Profile</i>
-      </a>
-  </div>
 </div>
 
   <!-- this will add a link to the new route -->
   <div class="navbar-menu navbar-end">
     
     <% if (typeof user !== 'undefined') { %>
-      <p class="navbar-item"><%= user.username %></p>
+      <a href="/users/" class="navbar-item"><%= user.username %></a>
     <% } %>
 
     <% if (typeof routes !== 'undefined') { %> <% routes.forEach((route) => { %>
