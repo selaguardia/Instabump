@@ -32,16 +32,16 @@
                     <div class="level is-mobile">
                         <div class="level-left">
                             <div class="level-item has-text-centered">
-                                <a href="">
-                                    <button class='bumpButton'>Bump</button>
-                                </a>
+                                <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                                    <input type='submit' value='Bump'>
+                                </form>
                             </div>
                         </div>
                     </div>
     
                     <div class="content">
                         <p>
-                            <strong><%= post.bumpCount %> Bumps</strong>
+                            <strong><%= post.bumpCount.length %> Bumps</strong>
                         </p>
                         <a href="/posts/<%= post._id %>">
                             <%= post.caption %>
@@ -55,11 +55,5 @@
         <% }) %>
         </div>
     </div>
-    <script>
-        console.log('hello');
-        $('.bumpButton').on('click', () => {
-        console.log("String bump");
-        });
-    </script>
 </body>
 </html>
