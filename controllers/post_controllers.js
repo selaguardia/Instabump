@@ -4,7 +4,7 @@ const { Post, User } = require("../models");
 
 // Index route
 router.get("/", (req, res, next) => {
-  Post.find({}, (error, allPosts) => {
+  Post.find({}).populate("user").exec( (error, allPosts) => {
     if (error) {
       console.log(error);
       req.error = error;
