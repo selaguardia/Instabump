@@ -10,10 +10,11 @@ const postSchema = new Schema({
     type: String,
     required: [true, "You must add an image."]
   },
-  bumpCount: {
-    type: Number,
-    default: 0,
-  },
+  bumpCount: [{
+
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+  }],
   isPinned: {
     type: Boolean,
     default: false,
