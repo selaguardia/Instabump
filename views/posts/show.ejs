@@ -8,7 +8,7 @@
         <%- include('../partials/navbar/_navbar', { routes } ) %>
     <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
     
-    <section class="hero is-medium has-background-light">
+    <section class="hero is-small has-background-light">
       <div class="hero-body">
         <h1 class="title">Post Show Page</h1>
       </div>
@@ -24,7 +24,12 @@
         <div class="media-content">
           <div class="content">
             <h3>Caption: <%= post.caption %></h3>
-            <small>Bump Count: <%= post.bumpCount %></small>
+            <small>Bump Count: <%= post.bumpCount.length %></small>
+                  <div>
+                      <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                          <input type='submit' value='Bump'>
+                      </form>
+                  </div>
           </div>
           <button class="button is-danger toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
         </div>

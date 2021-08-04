@@ -29,16 +29,6 @@
                     </figure>
                 </div>
                 <div class="card-content">
-                    <div class="level is-mobile">
-                        <div class="level-left">
-                            <div class="level-item has-text-centered">
-                                <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                                    <input type='submit' value='Bump'>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-    
                     <div class="content">
                         <p>
                             <strong><%= post.bumpCount.length %> Bumps</strong>
