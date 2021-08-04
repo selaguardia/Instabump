@@ -13,21 +13,23 @@
         <h1 class="title">Post Show Page</h1>
       </div>
     </section> 
-    
+  
     <div class="container is-max-widescreen p-5">
       <article class="media">
         <figure class="media-left">
           <p class="image is-328x328">
-            <img src="<%= Post.image %>" alt="Post img" />
+            <img src="<%= post.image %>" alt="Post img" />
           </p>
         </figure>
         <div class="media-content">
           <div class="content">
-            <h3>name: <%= Post.caption %></h3>
-            <small>price: <%= Post.bumpCount %></small>
+            <h3>Caption: <%= post.caption %></h3>
+            <small>Bump Count: <%= post.bumpCount %></small>
           </div>
+          <button><a href="/posts/<%= post._id/edit%>">Edit</a></button>
         </div>
       </article>
     </div>
+  
 </body>
 </html>
