@@ -3,7 +3,7 @@ const router = express.Router();
 const { Post, User } = require("../models");
 
 // Index route
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Post.find({}, (error, allPosts) => {
     if (error) {
       console.log(error);
@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
 });
 
 // Index with Populate from User
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   Post.find({})
     .populate("user")
     .exec((error, allPosts) => {

@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const connectionString = "mongodb://localhost:27017/instabump";
+
+require("dotenv").config();
+const connectionString = process.env.MONGODB_URI || "mongodb://localhost:27017/instaBump";
 
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
