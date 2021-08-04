@@ -11,7 +11,7 @@
   <div class="navbar-menu navbar-end">
     
     <% if (typeof user !== 'undefined') { %>
-      <a href="/users/" class="navbar-item"><%= user.username %></a>
+      <a href="/users/<%= user._id %> " class="navbar-item"><%= user.username %></a>
     <% } %>
 
     <% if (typeof routes !== 'undefined') { %> <% routes.forEach((route) => { %>
