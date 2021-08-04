@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// Show Route
+// Show Route for all posts by one user
 router.get("/:id", (req, res, next) => {
   User.findById(req.params.id, (error, foundUser) => {
     if (error) {
