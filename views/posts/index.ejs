@@ -16,11 +16,10 @@
                             <figure class="image is-48x48">
                                 <img src="https://via.placeholder.com/150" alt="Placeholder image">
                             </figure>
-                             
                         </div>
                         <div class="media-content">
                             <p class="subtitle is-6"><%= user.fullName %></p>
-                            <p class="subtitle is-6"><%= user.username %></p>
+                            <a href="/users/<%= post.user._id %>"> <%= post.user %></a>
                         </div>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
                         <div class="level-left">
                             <div class="level-item has-text-centered">
                                 <a href="">
-                                    <button>Bump</button>
+                                    <button class='bumpButton'>Bump</button>
                                 </a>
                             </div>
                         </div>
@@ -52,9 +51,15 @@
                         <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
                     </div>
                 </div>
-            </div>
+            </div><br>
         <% }) %>
         </div>
     </div>
+    <script>
+        console.log('hello');
+        $('.bumpButton').on('click', () => {
+        console.log("String bump");
+        });
+    </script>
 </body>
 </html>
