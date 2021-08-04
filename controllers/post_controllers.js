@@ -4,7 +4,7 @@ const { Post, User } = require("../models");
 
 // Index route
 router.get("/", (req, res, next) => {
-  Post.find({}, (error, allPosts) => {
+  Post.find({}).populate("user").exec( (error, allPosts) => {
     if (error) {
       console.log(error);
       req.error = error;
@@ -103,6 +103,28 @@ router.put("/:id", (req, res, next) => {
 
       return res.redirect(`/posts/${updatedPost.id}`);
     });
+});
+
+router.post("/:id/updateBumper", (req, res) => {
+  Post.findById(
+    req.params.id,
+    (error, foundPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      } 
+      console.log('found post', foundPost);
+      if (foundPost.bumpCount.includes(req.session.currentUser.id)){
+        foundPost.bumpCount.remove(req.session.currentUser.id);
+        foundPost.save();
+      } else {
+        foundPost.bumpCount.push(req.session.currentUser.id);
+        foundPost.save();
+      }
+      return res.redirect('/posts');
+    } 
+  )
 });
 
 // Delete Route

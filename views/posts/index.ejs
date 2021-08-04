@@ -14,12 +14,12 @@
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-48x48">
-                                <img src="https://via.placeholder.com/150" alt="Placeholder image">
+                                <img src=" <%= post.user.avatar %> " alt="Placeholder image">
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="subtitle is-6"><%= user.fullName %></p>
-                            <a href="/users/<%= post.user._id %>"> <%= post.user %></a>
+                            <p class="subtitle is-6"><%= post.user.fullName %></p>
+                            <a class="subtitle is-6" href="/users/<%= post.user._id %>"> <%= post.user.username %></a>
                         </div>
                     </div>
                 </div>
@@ -32,16 +32,16 @@
                     <div class="level is-mobile">
                         <div class="level-left">
                             <div class="level-item has-text-centered">
-                                <a href="">
-                                    <button class='bumpButton'>Bump</button>
-                                </a>
+                                <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                                    <input type='submit' value='Bump'>
+                                </form>
                             </div>
                         </div>
                     </div>
     
                     <div class="content">
                         <p>
-                            <strong><%= post.bumpCount %> Bumps</strong>
+                            <strong><%= post.bumpCount.length %> Bumps</strong>
                         </p>
                         <a href="/posts/<%= post._id %>">
                             <%= post.caption %>
@@ -55,11 +55,5 @@
         <% }) %>
         </div>
     </div>
-    <script>
-        console.log('hello');
-        $('.bumpButton').on('click', () => {
-        console.log("String bump");
-        });
-    </script>
 </body>
 </html>
