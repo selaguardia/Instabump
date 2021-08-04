@@ -3,7 +3,8 @@ const express = require("express");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-require("./config/db.connection");
+require("dotenv").config();
+/* require("./config/db.connection"); */
 
 // Create the express app
 const app = express();
@@ -20,7 +21,7 @@ app.use(express.static("public"));
 
 app.use(
   session({
-    store: MongoStore.create({mongoUrl: "mongodb://localhost:27017/sellitup"}),
+    store: MongoStore.create({mongoUrl: process.env.MONGODB_URI}),
     secret: "super duper secret",
     resave: false,
     saveUninitialized: false,
@@ -48,10 +49,10 @@ app.use(require("./utils/navlinks"));
 // Auth Required
 const authRequired = function (req, res, next) {
   if (req.session.currentUser) {
-    return next();
+    return res.redirect("/login");
   }
 
-  return res.redirect("/login");
+  return next();
 };
 
 // Routes
