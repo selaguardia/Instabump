@@ -16,7 +16,9 @@ router.get("/login", (req, res) => {
 // Register Post Route
 router.post("/register", async (req, res) => {
   try {
-    const foundUser = await User.exists({email: req.body.email});
+    const foundUser = await User.exists({
+      $or: [{email: req.body.email}, {username: req.body.username}],
+    });
     if (foundUser) {
       return res.redirect("/login");
     }

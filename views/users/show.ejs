@@ -27,22 +27,32 @@
        <section class="column">
           <% post.forEach(post => { %>
 
-          <div class="box">
-            <article class="media">
-              <div class="media-left">
-                <figure class="image is-64x64">
-                  <img src=" <%= post.image %> " alt="Image" />
-                </figure>
+            <div class="card">
+
+              <div class="card-image">
+                  <figure class="image is-4by3">
+                      <img src="<%= post.image %>" alt="Placeholder image">
+                  </figure>
               </div>
-              <div class="media-content">
-                <div class="content">
-                  <strong><%= user.fullName %></strong>
-                  <small>
-                    <%= new Date(post.createdAt).toLocaleString() %>
-                  </small>
-                  <br />
-
-
+              <div class="card-content">
+                  <div class="level is-mobile">
+                      <div class="level-left">
+                          <div class="level-item has-text-centered">
+                              <a href="/users/<% user.username._id %>"> User </a>
+                          </div>
+                      </div>
+                  </div>
+  
+                  <div class="content">
+                      <p>
+                          <strong><%= post.bumpCount %> Bumps</strong>
+                      </p>
+                      <%= post.caption %>
+                      <br>
+                      <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
+                  </div>
+              </div>
+          </div>
           <% }) %>
         </section>
       </div>

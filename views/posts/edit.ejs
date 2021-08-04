@@ -11,7 +11,7 @@
     </section>
 
     <section class="container is-max-widescreen p-5">
-      <form action="/posts" method="POST">
+      <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
         <% if (typeof error !== 'undefined') { %>
           <article class="message is-danger">
             <div class="message-header">
