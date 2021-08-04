@@ -105,6 +105,28 @@ router.put("/:id", (req, res, next) => {
     });
 });
 
+router.post("/:id/updateBumper", (req, res) => {
+  Post.findById(
+    req.params.id,
+    (error, foundPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      } 
+      console.log('found post', foundPost);
+      if (foundPost.bumpCount.includes(req.session.currentUser.id)){
+        foundPost.bumpCount.remove(req.session.currentUser.id);
+        foundPost.save();
+      } else {
+        foundPost.bumpCount.push(req.session.currentUser.id);
+        foundPost.save();
+      }
+      return res.redirect('/posts');
+    } 
+  )
+});
+
 // Delete Route
 router.delete("/:id", (req, res, next) => {
   Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
