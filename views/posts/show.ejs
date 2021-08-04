@@ -23,9 +23,10 @@
         </figure>
         <div class="media-content">
           <div class="content">
-            <h3> <%= post.caption %></h3>
-            <small> <%= post.bumpCount %></small>
+            <h3>Caption: <%= post.caption %></h3>
+            <small>Bump Count: <%= post.bumpCount %></small>
           </div>
+          <button><a href="/posts/<%= post._id/edit%>">Edit</a></button>
         </div>
       </article>
     </div>
