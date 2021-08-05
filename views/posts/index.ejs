@@ -2,7 +2,7 @@
 <html lang="en">
 	<!-- head -->
 	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-<body>
+<body class="has-background-primary">
     <!-- Navbar Partial -->
     <%- include('../partials/navbar/_navbar', { routes } ) %>
 <% posts.forEach(post => { %>
@@ -36,7 +36,7 @@
                         <%= post.caption %>
                     </a>
                     <br>
-                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
                   </div>
                 </div>
               </div>

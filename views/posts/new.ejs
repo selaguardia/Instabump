@@ -6,12 +6,12 @@
     <%- include('../partials/navbar/_navbar', { routes } ) %>
     
     <section class="hero is-small has-background-light">
-      <div class="hero-body">
+      <div class="hero-body has-background-primary">
         <h1 class="title">New Post Page</h1>
       </div>
     </section>
 
-    <section class="container is-max-widescreen p-5">
+    <section class="container is-max-widescreen p-5 has-background-primary">
       <form action="/posts" method="POST">
         <% if (typeof error !== 'undefined') { %>
           <article class="message is-danger">
