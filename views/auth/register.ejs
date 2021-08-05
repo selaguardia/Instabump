@@ -1,41 +1,57 @@
-<!DOCTYPE html>
+<!DOCTYPE html>    
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  <link rel="stylesheet" href="../../public/styles/main.css">
-  <title>Sign-Up</title>
-</head>
+	<!-- head -->
+	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
 <body>
-  <div class="entireForm">
-    <div class="formBox">
-      <form action="/register" method="POST" style="border:1px solid #ccc">
-      <div class="container">
-        <h1>instaBump Sign Up</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
-        <label for="fullName"><b>Full Name:</b></label>
-        <input type="text" placeholder="Enter Full Name" name="fullName" required>
-        
-        <label for="userame"><b>Username:</b></label>
-        <input type="text" placeholder="Enter your username" name="username" required>
-        
-        <label for="profileImage"><b>Profile Image:</b></label>
-        <input type="text" placeholder="Enter URL for Profile Image" name="avatar" required>
+    <!-- Navbar Partial -->
+    <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-        <label for="email"><b>Email:</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-        <label for="psw"><b>Password:</b></label>
-        <input type="password" placeholder="Enter Password" name="password" required>
-        <div class="clearfix">
-          <button type="button" class="cancelbtn">Cancel</button>
-          <button type="submit" class="signupbtn">Sign Up</button>
-        </div>
+  <div class="container is-max-desktop ">
+    <br><br>
+    <div class="field">
+      <label class="label">Full Name:</label>
+      <div class="control">
+        <input class="input" type="text" name="fullName" required>
       </div>
-    </form>
+    </div>
+
+    <div class="field">
+      <label class="label">Email:</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-danger" type="email" name="email" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password:</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input is-danger" type="password" name="password" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Username:</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" type="text"  name="username" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Profile URL:</label>
+      <div class="control has-icons-left has-icons-right">
+        <input class="input" type="text" name="avatar" required>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link">Sign up</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-light">Cancel</button>
+      </div>
+    </div>
   </div>
 </body>
+
 </html>

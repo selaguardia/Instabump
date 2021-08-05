@@ -20,6 +20,7 @@
   "homepage": "https://github.com/selaguardia/Instabump#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bootstrap": "^5.1.0",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
