@@ -48,7 +48,7 @@ app.use(require("./utils/navlinks"));
 
 // Auth Required
 const authRequired = function (req, res, next) {
-  if (req.session.currentUser) {
+  if (!req.session.currentUser) {
     return res.redirect("/login");
   }
 
@@ -60,9 +60,9 @@ app.get("/", (req, res) => {
   res.redirect("/posts");
 });
 
-app.use("/posts", controllers.post);
-app.use("/users", controllers.user);
 app.use("/", controllers.auth);
+app.use("/posts", authRequired, controllers.post);
+app.use("/users", authRequired, controllers.user);
 
 // 404 Route
 app.get("/*", (req, res) => {

@@ -23,13 +23,16 @@ router.get("/", (req, res, next) => {
 router.get("/", (req, res, next) => {
   Post.find({})
     .populate("user")
-    .exec((error, allPosts) => {
+    .exec((error, allPosts, currentUser) => {
       if(error) {
         console.log(error);
         req.error = error;
         return next();
       }
-      const context = {posts: allPosts};
+      const context = {
+        posts: allPosts,
+        user: currentUser,
+      };
       return res.render("posts/index", context);
     });
 });
@@ -79,7 +82,8 @@ router.get("/:id/edit", (req, res, next) => {
       req.error = error;
       return next();
     }
-
+    console.log(foundPost.user);
+    console.log(req.session.currentUser.id);
     const context = {
       post: foundPost,
     };

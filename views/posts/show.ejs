@@ -31,7 +31,12 @@
                       </form>
                   </div>
           </div>
-          <button class="button is-danger toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
+           <% if (req.session.currentUser.id === post.id) { %>
+              <button class="button is-danger toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
+           <% } else { %>
+
+           <% } %>
+          
         </div>
       </article>
     </div>
