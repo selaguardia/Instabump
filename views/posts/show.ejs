@@ -31,7 +31,7 @@
                       </form>
                   </div>
           </div>
-           <% if (user.id == post._id) { %>
+           <% if (user.id == post.user._id) { %>
               <button class="button is-danger toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
            <% } else { %>
 
