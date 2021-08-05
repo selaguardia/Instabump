@@ -10,7 +10,7 @@ require("dotenv").config();
 const app = express();
 
 // PORT
-const PORT = 4000;
+const PORT = process.env.PORT;
 
 // Internal Modules
 const controllers = require("./controllers");
@@ -71,6 +71,6 @@ app.get("/*", (req, res) => {
 });
 
 // Tell the app to listen on port 4000
-app.listen(PORT, () =>
+app.listen(process.env.PORT || 4000, () =>
   console.log(`Listening for client requests on port ${PORT}`)
 ); 
