@@ -5,21 +5,21 @@
 <%- include( '../partials/head/_head.ejs' , { page: 'Post' } ) %>
 
 
-    <body>
+    <body class="has-background-primary">
         <!-- Navbar Partial -->
         <%- include('../partials/navbar/_navbar', { routes } ) %>
 
             <!-- Page Content-->
 
-            <div class="container px-4 px-lg-5">
+            <div class="container px-4 px-lg-5 has-background-primary ">
                 <!-- Heading Row-->
             
-                <div class="columns">
+                <div class="columns has-background-primary">
                     <div class="column is-half">
                         <img src="<%= user.avatar %>" alt="">
                     </div>
                     <div class="column">
-                        <h1><%= user.fullName %> Profile</h1>
+                        <p class="is-size-7 has-text-primary"><%= user.fullName %> Profile</p>
                         <h3>@<%= user.username %></h3>
                     </div>
                   </div>
@@ -27,7 +27,7 @@
                 <div class="columns is-multiline">
                     <% post.forEach(post=> { %>
                         <!-- Content Row-->
-                        <div class="column is-one-quarter">
+                        <div class="column is-one-quarter has-background-primary">
                             <div class="card">
                                 <div class="card-image">
                                   <figure class="image is-4by3">
