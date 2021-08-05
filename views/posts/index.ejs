@@ -14,11 +14,12 @@
                     <div class="media">
                         <div class="media-left">
                             <figure class="image is-48x48">
-                                <img src="https://via.placeholder.com/150" alt="Placeholder image">
+                                <img src=" <%= post.user.avatar %> " alt="Placeholder image">
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="subtitle is-6"><%= user.username %></p>
+                            <p class="subtitle is-6"><%= post.user.fullName %></p>
+                            <a href="/users/<%= post.user.id %> "><%= post.user.username %></a>
                         </div>
                     </div>
                 </div>
