@@ -10850,3 +10850,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.user_show_post_image {
+  max-width: 50px;
+  height: auto;
+}
