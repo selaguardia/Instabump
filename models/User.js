@@ -23,6 +23,12 @@ const userSchema = new Schema({
   fullName: {
     type: String,
     required: [true, "Please enter your full name."]
+  },
+  pins: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 3,
   }
 },
   {

@@ -58,4 +58,29 @@ router.post("/", (req, res) => {
   });
 });
 
+// Update Pin Route
+router.post("/:id/togglePin", async (req, res, next) => {
+  try {
+    const foundPost = await Post.findById(req.params.id);
+    foundPost.isPinned = !foundPost.isPinned;
+    await foundPost.save();
+    const foundUser = await User.findById(foundPost.user);
+    let pins = foundUser.pins;
+    if (foundUser.pins < 3) {
+      pins++;
+      console.log("Increasing Pins", pins)
+      foundUser.pins = pins;
+    } else { 
+      pins--;
+      console.log("Decreasing Pins", pins)}
+      foundUser.pins = pins;
+    await foundUser.save();
+    return res.redirect('/posts');
+  } catch (error) {
+          console.log(error);
+      req.error = error;
+      return next();
+  }
+});
+
 module.exports = router;
