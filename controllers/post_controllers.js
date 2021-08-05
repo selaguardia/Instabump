@@ -60,6 +60,8 @@ router.post("/", (req, res, next) => {
 // Show Route
 router.get("/:id", (req, res, next) => {
   Post.findById(req.params.id, (error, foundPost) => {
+/*     console.log("===", foundPost.user);
+    console.log("===",req.session.currentUser.id); */
     if (error) {
       console.log(error);
       req.error = error;
@@ -82,8 +84,6 @@ router.get("/:id/edit", (req, res, next) => {
       req.error = error;
       return next();
     }
-    console.log(foundPost.user);
-    console.log(req.session.currentUser.id);
     const context = {
       post: foundPost,
     };
