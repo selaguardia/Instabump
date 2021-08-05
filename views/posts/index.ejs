@@ -5,10 +5,10 @@
 <body>
     <!-- Navbar Partial -->
     <%- include('../partials/navbar/_navbar', { routes } ) %>
-
+<% posts.forEach(post => { %>
     <div class="columns body-columns">
         <div class="column is-half is-offset-one-quarter">
-        <% posts.forEach(post => { %>
+        
             <div class="card">
                 <div class="header">
                     <div class="media">
@@ -19,7 +19,7 @@
                         </div>
                         <div class="media-content">
                             <p class="subtitle is-6"><%= post.user.fullName %></p>
-                            <a href="/users/<%= post.user.id %> "><%= post.user.username %></a>
+                            <a href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,9 @@
                     </div>
                 </div>
             </div><br>
-        <% }) %>
+       
         </div>
     </div>
+<% }) %>   
 </body>
 </html>
