@@ -3,9 +3,28 @@
 	<!-- head -->
 	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
 <body>
+  <nav class="navbar has-background-primary-dark has-shadow" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item has-text-white" >
+        <h1>insta👊🏼</h1>
+      </a>
   
-<form action="/register" method="POST">
-  <div class="container is-max-desktop ">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      
+      
+    </div>
+  </nav> 
+  <form action="/register" method="POST">
+    <div class="container is-max-desktop ">
+    <br><br>
+    <label for=""><h1><strong>Register for an insta👊🏼 account:</strong></h1></label>
     <br><br>
     <div class="field">
       <label class="label">Full Name:</label>
@@ -16,35 +35,35 @@
 
     <div class="field">
       <label class="label">Email:</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-danger" type="email" name="email" required>
+      <div class="control">
+        <input class="input" type="email" name="email" required>
       </div>
     </div>
 
     <div class="field">
       <label class="label">Password:</label>
-      <div class="control has-icons-left has-icons-right">
-        <input class="input is-danger" type="password" name="password" required>
+      <div class="control ">
+        <input class="input" type="password" name="password" required>
       </div>
     </div>
 
     <div class="field">
       <label class="label">Username:</label>
-      <div class="control has-icons-left has-icons-right">
+      <div class="control ">
         <input class="input" type="text"  name="username" required>
       </div>
     </div>
 
     <div class="field">
       <label class="label">Profile URL:</label>
-      <div class="control has-icons-left has-icons-right">
+      <div class="control">
         <input class="input" type="text" name="avatar" required>
       </div>
     </div>
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Sign up</button>
+        <button class="button is-link has-background-primary-dark has-shadow">Sign up</button>
       </div>
       <div class="control">
         <button class="button is-link is-light">Cancel</button>
