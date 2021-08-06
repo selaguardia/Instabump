@@ -1,3 +1,13 @@
+About this project:
+
+The purpose of this project is to create aa social media platform where you wont be spammed with so many posts from the same user. In this version of insta👊🏼 users are allowed to share up to 3 pinned photos. If you like the photo you can simply click on the photo and bump it.
+
+Instructions:
+-To play the game, launch game via horoku (https://instabump.herokuapp.com/) register for an account and then uppload your profile photo and then just begin uploading photos. -Choose up to 3 favorite photos to pin to the main feed.
+-Click on a user username to go to their profile page and see all their posts.
+-Click on All users to see a list of all users on the platform.
+
+
 MVP -- We are reverse engineering Instagram, and will be recreating the following features:
 
 
