@@ -4,12 +4,11 @@
   <%- include('../partials/head/_head', { page: 'login' } ) %>
 
   <body>
-    <!-- Navbar Partial -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-    <section class="hero is-fullheight-with-navbar is-link">
+
+    <section class="hero is-fullheight-with-navbar is-link has-background-primary-dark has-shadow">
       <div class="hero-body is-flex-direction-column">
-        <h1 class="title">Login</h1>
+        <h1 class="title">insta👊🏼 Login</h1>
         <form action="/login" method="POST" class="box">
           <div class="field">
             <label class="label">Email</label>
@@ -35,7 +34,7 @@
           </div>
           <div class="field">
             <div class="control">
-              <button class="button is-link is-fullwidth">Submit</button>
+              <button class="button is-link is-fullwidth has-background-primary-dark has-shadow">Submit</button>
             </div>
           </div>
           <a href="/register">Need an account?</a>

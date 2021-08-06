@@ -1,8 +1,8 @@
-<nav class="navbar is-info has-shadow" role="navigation" aria-label="main navigation">
+<nav class="navbar has-background-primary-dark has-shadow" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/posts/">
+    <div class="navbar-item has-text-white" >
       <h1>insta👊🏼</h1>
-    </a>
+    </div>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -13,21 +13,24 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/posts/">
+      <a class="buttom navbar-item" href="/posts/">
         Pinned Feed
       </a>
 
-      <a class="navbar-item" href="/users/">
+      <a class="navbar-item" href="/users/<%= user.id %>">
         Your Profile
+      </a>
+      <a class="navbar-item" href="/users/">
+        All Users
       </a>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary" href="/posts/new">
+          <a class="button has-text-white has-background-primary-dark" href="/posts/new">
             <p id="plusSymbol">+</p>
           </a>
-          <a class="button is-light" href="/logout/">
+          <a class="button has-text-white has-background-primary-dark" href="/logout/">
             Log out
           </a>
         </div>

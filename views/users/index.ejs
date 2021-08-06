@@ -2,7 +2,7 @@
 <html lang="en">
 	<!-- head -->
 	<%- include( '../partials/head/_head.ejs', { page: 'User' } ) %> 
-<body>
+<body class="has-background-primary">
     <!-- Navbar Partial -->
     <%- include('../partials/navbar/_navbar', { routes } ) %>
     <div class="columns body-columns">
@@ -17,8 +17,8 @@
                           </figure>
                       </div>
                       <div class="media-content">
-                          <p class="subtitle is-6"><%= user.fullName %></p>
-                          <a class="subtitle is-6" href="/users/<%= user._id %>"> <%= user.username %></a>
+                          <p class=""><strong><%= user.fullName %></strong></p>
+                          <a class="" href="/users/<%= user._id %>"> @<%= user.username %></a>
                       </div>
                   </div>
               </div>

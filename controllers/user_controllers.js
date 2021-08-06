@@ -71,6 +71,7 @@ router.post("/:id/togglePin", async (req, res, next) => {
       foundUser.pins = pins;
     } else { 
       pins--;
+      foundPost.isPinned = !foundPost.isPinned;
       console.log("Decreasing Pins", pins)}
       foundUser.pins = pins;
     await foundUser.save();
