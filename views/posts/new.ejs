@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html class="has-background-primary-dark">
   <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-  <body>
+  <body class="has-background-primary-dark">
     <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
     <%- include('../partials/navbar/_navbar', { routes } ) %>
-    
-    <section class="hero is-small has-background-light">
-      <div class="hero-body has-background-primary">
-        <h1 class="title">New Post Page</h1>
-      </div>
-    </section>
-
     <section class="container is-max-widescreen p-5 has-background-primary">
       <form action="/posts" method="POST">
         <% if (typeof error !== 'undefined') { %>
@@ -24,6 +17,9 @@
           </article>
         <% } %>
         <div class="field">
+          <div class="hero-body has-background-primary">
+            <h1 class="title">New Post Page</h1>
+          </div>
           <label for="post-image" class="label">Image URL:</label>
           <div class="control">
             <input
@@ -46,9 +42,6 @@
               id="post-caption">
           </div>
         </div>
-
-       
-
         <div class="field is-grouped">
           <div class="control">
             <button class="button is-info">Create post</button>
