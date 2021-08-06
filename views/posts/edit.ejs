@@ -58,6 +58,10 @@
         </div>
       </form>
 
+      <form method='POST' action="/users/<%= post._id%>/togglePin">
+        <input type='submit' value='Toggle Pin'>
+      </form>
+
       <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
         <button class="button is-danger m-2 navbar-item">Delete</button>
       </form>

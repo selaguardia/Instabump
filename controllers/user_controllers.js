@@ -39,7 +39,6 @@ router.get("/:id", (req, res, next) => {
         user: foundUser,
         post: allPosts,
       };
-      
       return res.render("users/show", context);
     });    
   });

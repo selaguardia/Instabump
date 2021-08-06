@@ -29,13 +29,13 @@
                         <div class="card-body">
                             <h2 class="card-title"><%= post.caption %></h2>
                             <img class="user_show_post_image" src="<%= post.image %>" alt="">
-                            <% if (user.id == user._id) { %>
+                            <% if (user == post._id) { %>
                                 <form method='POST' action="/users/<%= post._id%>/togglePin">
                                     <input type='submit' value='Toggle Pin'>
                                 </form>
-                             <% } else { %>
-                  
-                             <% } %>
+                            <% } else { %>
+                
+                            <% } %>
                             </div>
                     </div>
                 </div>
