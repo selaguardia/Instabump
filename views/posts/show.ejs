@@ -23,16 +23,18 @@
         </figure>
         <div class="media-content">
           <div class="content">
-            <h3>Caption: <%= post.caption %></h3>
-            <small>Bump Count: <%= post.bumpCount.length %></small>
+            <h1>Caption: <%= post.caption %></h3>
+            <h1>Bump Count: <%= post.bumpCount.length %></h1>
                   <div>
                       <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                          <input class="has-background-primary-dark"type='submit' value='Bump'>
+                          <input type='submit' value='Bump'>
                       </form>
                   </div>
           </div>
            <% if (user.id == post.user._id) { %>
+            <div>
               <button class="button is-danger toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
+            </div>
            <% } else { %>
 
            <% } %>
