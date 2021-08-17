@@ -61,11 +61,11 @@ router.post("/", (req, res) => {
 router.post("/:id/togglePin", async (req, res, next) => {
   try {
     const foundPost = await Post.findById(req.params.id);
-    foundPost.isPinned = !foundPost.isPinned;
     await foundPost.save();
     const foundUser = await User.findById(foundPost.user);
     let pins = foundUser.pins;
     if (foundUser.pins < 3) {
+      foundPost.isPinned = !foundPost.isPinned;
       pins++;
       console.log("Increasing Pins", pins)
       foundUser.pins = pins;
