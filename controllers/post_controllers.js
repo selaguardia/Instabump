@@ -139,7 +139,6 @@ router.delete("/:id", (req, res, next) => {
       req.error = error;
       return next();
     }
-
     return res.redirect("/posts");
   });
 });

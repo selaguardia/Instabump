@@ -4,19 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <link rel="stylesheet" href="/styles/main.css" />
+
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+
     <script src="/scripts/bulma.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+
     <title>instaBump</title>
   </head>
+
   <body class="has-navbar-fixed-top">
     <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
     <nav
@@ -39,27 +45,41 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-   
     </nav>
     <section class="hero is-medium has-background-light">
       <div class="hero-body">
-				<img
-          width="300px"
-          src="https://media.giphy.com/media/xTiN0L7EW5trfOvEk0/giphy.gif"
-          alt="not found"
-        />
-        <p class="title">404 Not Found</p>
-        <% if (error) { %>
-        <p><%= error.message %></p>
-        <% } %>
+        <h1 class="title">Post Show Page</h1>
       </div>
     </section>
-    <main class="container is-max-widescreen">
-      <div class="columns p-6">
-        <div class="column">
-          <a class="button is-info" href="/posts">Back To All Posts</a>
+
+    <div class="container is-max-widescreen p-5">
+      <article class="media">
+        <figure class="media-left">
+          <p class="image is-328x328">
+            <img src="<%= post.image %>" alt="post img" />
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <h3>name: <%= post.caption %></h3>
+            <small>price: <%= post.bumpCount %></small>
+
+            <div class="field mt-5 is-grouped">	
+              <div class="control">
+                <a class="button is-info" href="/posts/<%= post.id %>/edit">Edit Post
+                </a>
+              </div>
+
+              <p class="control">
+                <form action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                    <input class="button is-danger" type="submit" value="Delete Post"/>                    
+                </form>
+              </p>
+            </div>
+
+          </div>
         </div>
-      </div>
-    </main>
+      </article>
+    </div>
   </body>
 </html>

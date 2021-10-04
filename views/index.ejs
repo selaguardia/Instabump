@@ -4,17 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <link rel="stylesheet" href="/styles/main.css" />
+
     <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+
     <script src="/scripts/bulma.js" defer></script>
+    <script src="/scripts/main.js" defer></script>
+
     <title>instaBump</title>
   </head>
   <body class="has-navbar-fixed-top">
@@ -39,26 +44,41 @@
           <span aria-hidden="true"></span>
         </a>
       </div>
-   
+      <div class="navbar-menu navbar-end">
+        <a class="navbar-item" href="/posts/new"> New Post </a>
+      </div>
     </nav>
+
     <section class="hero is-medium has-background-light">
       <div class="hero-body">
-				<img
-          width="300px"
-          src="https://media.giphy.com/media/xTiN0L7EW5trfOvEk0/giphy.gif"
-          alt="not found"
-        />
-        <p class="title">404 Not Found</p>
-        <% if (error) { %>
-        <p><%= error.message %></p>
-        <% } %>
+        <p class="title">All Posts</p>
       </div>
     </section>
+
     <main class="container is-max-widescreen">
-      <div class="columns p-6">
-        <div class="column">
-          <a class="button is-info" href="/posts">Back To All Posts</a>
+      <div class="columns is-multiline p-5">
+        <% for(let idx = 0; idx < posts.length; idx++){ %> <% const post =
+        posts[idx] %>
+
+        <div class="column is-one-third">
+          <article class="card">
+            <section class="card-image">
+              <figure class="image is-3by3">
+                <img src="<%= post.image %>" alt="Placeholder image" />
+              </figure>
+            </section>
+            <div class="card-content">
+              <div class="content">
+                <h3>
+                  <a href="/posts/<%= post.id %>"><%= post.caption %> </a>
+                </h3>
+
+                <p><%= post.bumpCount %> bumps</p>
+              </div>
+            </div>
+          </article>
         </div>
+        <% } %>
       </div>
     </main>
   </body>
