@@ -2,42 +2,21 @@
 <html lang="en">
 	<!-- head -->
 	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-<body class="has-background-primary">
+<body>
     <!-- Navbar Partial -->
     <%- include('../partials/navbar/_navbar', { routes } ) %>
 <% posts.forEach(post => { %>
-    <div class="columns body-columns">
-        <div class="column is-half is-offset-one-quarter">
-            <div class="card">
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
-                      <figure class="image is-48x48">
-                        <img src=" <%= post.user.avatar %> " alt="Placeholder image">
-                      </figure>
-                    </div>
-                    <div class="media-content">
-                      <p class="title is-4"><%= post.user.fullName %></p>
-                      <a class="subtitle is-6" href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
-                    </div>
-                  </div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img src="<%= post.image %>" alt="Placeholder image">
-                  </figure>
-                </div>
-              
-                  <div class="content">
-                    <a href="/posts/<%= post._id %>">
-                        <%= post.caption %>
-                    </a>
-                    <br>
-                    <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
-                  </div>
-                </div>
-              </div>
-       
-        </div>
+    <div>
+      <img src=" <%= post.user.avatar %> " alt="user name">
+      <div>
+        <p><%= post.user.fullName %></p>
+        <a href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
+      </div>
+      <img src="<%= post.image %>" alt="user name">
+      <div>
+        <a href="/posts/<%= post._id %>"><%= post.caption %></a>
+        <time><%= new Date(post.createdAt).toLocaleString() %></time>
+      </div>
     </div>
 <% }) %>   
 </body>
