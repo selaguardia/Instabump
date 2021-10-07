@@ -1,54 +1,21 @@
 <!DOCTYPE html>
-<html class="has-background-primary-dark">
-  <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-  <body class="has-background-primary-dark">
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <section class="container is-max-widescreen p-5 has-background-primary">
-      <form action="/posts" method="POST">
-        <% if (typeof error !== 'undefined') { %>
-          <article class="message is-danger">
-            <div class="message-header">
-              <p>Danger</p>
-            </div>
-            <div class="message-body">
-              <%= error.message %> 
-            </div>
-          </article>
-        <% } %>
-        <div class="field">
-          <div class="hero-body has-background-primary">
-            <h1 class="title">New Post Page</h1>
-          </div>
-          <label for="post-image" class="label">Image URL:</label>
-          <div class="control">
-            <input
-              id="post-image"
-              class="input"
-              type="text"
-              placeholder="http://"
-              name="image"
-            />
-          </div>
-        </div>
-        <div class="field">
-          <label for="post-caption" class="label">Caption:</label>
-          <div class="control">
-            <input 
-              type="text" 
-              class="input" 
-              placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." 
-              name="caption" 
-              id="post-caption">
-          </div>
-        </div>
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-info">Create post</button>
-          </div>
-        </div>
+<html>
+<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<body>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
 
-      </form>
-    </section>
-  </body>
+<form action="/posts" method="POST">
+  <% if (typeof error !== 'undefined') { %>
+  <p>Danger</p>
+  <%= error.message %> 
+  <% } %>
+  <h1>New Post Page</h1>
+  <label for="post-image">Image URL:</label>
+  <input id="post-image" type="text" placeholder="http://" name="image"/>
+  <label for="post-caption" >Caption:</label>
+  <input type="text" placeholder="Lorem ipsum dolor sit amet" name="caption" id="post-caption">
+  <button>Create post</button>
+</form>
+
+</body>
 </html>

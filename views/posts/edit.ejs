@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
@@ -8,22 +8,21 @@
   <h1>Edit Post Page</h1>
 </header>
 
+<form action="/posts/<%=post.id %>?_method=PUT" method="POST">
+  <% if (typeof error !== 'undefined') { %>
+    <p>Danger</p>
+    <p><%= error.message %></p>
+  <% } %>
+    <label for="post-caption">Edit Caption</label>
+    <input type="text" placeholder="Super Cool post" name="caption" id="post-caption" value='<%= post.caption %>'>
+    <label for="post-image">Edit Image</label>
+    <input id="post-image" type="text" placeholder="http://" name="image" value="<%= post.image %>"/>
+    <button>Save</button>
+</form>
 
-  <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
-    <% if (typeof error !== 'undefined') { %>
-      <p>Danger</p>
-      <p><%= error.message %></p>
-    <% } %>
-      <label for="post-caption">Edit Caption</label>
-      <input type="text" placeholder="Super Cool post" name="caption" id="post-caption" value='<%= post.caption %>'>
-      <label for="post-image">Edit Image</label>
-      <input id="post-image" type="text" placeholder="http://" name="image" value="<%= post.image %>"/>
-      <button>Save</button>
-  </form>
+<form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>
 
-  <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
-    <button>Delete</button>
-  </form>
-  
 </body>
 </html>

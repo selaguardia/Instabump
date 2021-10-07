@@ -1,47 +1,25 @@
 <!DOCTYPE html>
-<html class="has-background-primary has-shadow">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Post' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Post' } ) %> 
+<html>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
 
-  <body class=" has-shadow">
-        <!-- Navbar Partial -->
-        <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    
-    <section class="hero is-small has-shadow">
-      <div class="column">
-        <h1 class="title">Post Show Page</h1>
-      </div>
-    </section> 
-  
-    <div class="container is-max-widescreen p-5  has-shadow">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-328x328">
-            <img src="<%= post.image %>" alt="Post img" />
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <h1>Caption: <%= post.caption %></h3>
-            <h1>Bump Count: <%= post.bumpCount.length %></h1>
-                  <div>
-                      <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                          <input type='submit' value='Bump'>
-                      </form>
-                  </div>
-          </div>
-           <% if (user.id == post.user._id) { %>
-            <div>
-              <button class="button has-background-primary-dark toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
-            </div>
-           <% } else { %>
+<header>
+  <h1>Post Show Page</h1>
+</header>
 
-           <% } %>
-          
-        </div>
-      </article>
-    </div>
-  
+<img src="<%= post.image %>" alt="Post img" />
+<h1>Caption: <%= post.caption %></h1>
+<h1>Bump Count: <%= post.bumpCount.length %></h1>
+
+<form method='POST' action="/posts/<%= post._id%>/updateBumper">
+  <input type='submit' value='Bump'>
+</form>
+
+<% if (user.id == post.user._id) { %>
+  <a href="/posts/<%= post._id%>/edit">Edit</a>
+<% } else { %>
+
+<% } %>
+
 </body>
 </html>

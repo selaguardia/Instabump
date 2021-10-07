@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/selaguardia/Instabump.git"
+    "url": "git+https://github.com/aggarabedian/Instabump.git"
   },
-  "author": "Abe Garadebian & Sergio Laguardia",
+  "author": "Abraham Garabedian & Sergio Laguardia",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/selaguardia/Instabump/issues"
+    "url": "https://github.com/aggarabedian/Instabump/issues"
   },
-  "homepage": "https://github.com/selaguardia/Instabump#readme",
+  "homepage": "https://github.com/aggarabedian/Instabump#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.1.0",

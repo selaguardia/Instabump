@@ -1,19 +1,14 @@
 <!DOCTYPE html>    
 <html lang="en">
-<!-- Head Partial -->
 <%- include( '../partials/head/_head.ejs', { page: 'User' } ) %> 
 <body>
-<!-- Navbar Partial -->
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-
-  <% users.forEach(user => { %>
-    <div>
-      <img src=" <%= user.avatar %> " alt="Placeholder image">
-      <p><%= user.fullName %></p>
-      <a href="/users/<%= user._id %>"> @<%= user.username %></a>
-    </div>
-  <% }) %>
+<% users.forEach(user => { %>
+  <img src=" <%= user.avatar %> " alt="Placeholder image">
+  <p><%= user.fullName %></p>
+  <a href="/users/<%= user._id %>"> @<%= user.username %></a>
+<% }) %>
 
 </body>
 </html>

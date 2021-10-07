@@ -4,7 +4,6 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
-/* require("./config/db.connection"); */
 
 // Create the express app
 const app = express();
