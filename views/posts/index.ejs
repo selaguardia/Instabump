@@ -1,23 +1,16 @@
 <!DOCTYPE html>    
 <html lang="en">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
 <body>
-    <!-- Navbar Partial -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
 <% posts.forEach(post => { %>
-    <div>
-      <img src=" <%= post.user.avatar %> " alt="user name">
-      <div>
-        <p><%= post.user.fullName %></p>
-        <a href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
-      </div>
-      <img src="<%= post.image %>" alt="user name">
-      <div>
-        <a href="/posts/<%= post._id %>"><%= post.caption %></a>
-        <time><%= new Date(post.createdAt).toLocaleString() %></time>
-      </div>
-    </div>
-<% }) %>   
+  <img src=" <%= post.user.avatar %> " alt="user name">
+  <p><%= post.user.fullName %></p>
+  <a href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
+  <img src="<%= post.image %>" alt="user name">
+  <a href="/posts/<%= post._id %>"><%= post.caption %></a>
+  <time><%= new Date(post.createdAt).toLocaleString() %></time>
+<% }) %>
+
 </body>
 </html>

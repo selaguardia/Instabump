@@ -1,67 +1,29 @@
 <!DOCTYPE html>
 <html>
   <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-  <body class="has-navbar-fixed-top">
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <section class="hero is-medium has-background-light">
-      <div class="hero-body">
-        <h1 class="title">New Post Page</h1>
-      </div>
-    </section>
+<body>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
 
-    <section class="container is-max-widescreen p-5">
-      <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
-        <% if (typeof error !== 'undefined') { %>
-          <article class="message is-danger">
-            <div class="message-header">
-              <p>Danger</p>
-            </div>
-            <div class="message-body">
-              <%= error.message %> 
-            </div>
-          </article>
-        <% } %>
+<header>
+  <h1>Edit Post Page</h1>
+</header>
 
-        <div class="field">
-          <label for="post-caption" class="label">Edit Caption</label>
 
-          <div class="control">
-            <input 
-              type="text" 
-              class="input" 
-              placeholder="Super Cool post" 
-              name="caption" 
-              id="post-caption"
-              value='<%= post.caption %>'>
-          </div>
-        </div>
+  <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
+    <% if (typeof error !== 'undefined') { %>
+      <p>Danger</p>
+      <p><%= error.message %></p>
+    <% } %>
+      <label for="post-caption">Edit Caption</label>
+      <input type="text" placeholder="Super Cool post" name="caption" id="post-caption" value='<%= post.caption %>'>
+      <label for="post-image">Edit Image</label>
+      <input id="post-image" type="text" placeholder="http://" name="image" value="<%= post.image %>"/>
+      <button>Save</button>
+  </form>
 
-        <div class="field">
-          <label for="post-image" class="label">Edit Image</label>
-          <div class="control">
-            <input
-              id="post-image"
-              class="input"
-              type="text"
-              placeholder="http://"
-              name="image"
-              value="<%= post.image %>"
-            />
-          </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-info">Save</button>
-          </div>
-        </div>
-      </form>
-
-      <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
-        <button class="button is-danger m-2 navbar-item">Delete</button>
-      </form>
-      
-    </section>
-  </body>
+  <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
+    <button>Delete</button>
+  </form>
+  
+</body>
 </html>
