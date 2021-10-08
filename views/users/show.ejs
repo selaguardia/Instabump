@@ -4,14 +4,41 @@
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<img src="<%= user.avatar %>" alt="">
-<h3><%= user.fullName %>'s Profile</h3>
-<h3>@<%= user.username %></h3>
 
+
+<div class="columns">
 <% post.forEach(post=> { %>
-  <img src="<%= post.image %>" alt="Placeholder image">
-  <a href="/posts/<%= post._id %>"><%= post.caption %></a>
-  <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
+  <!-- Image Card -->
+  <!-- <div class="container column is-fluid is-one-third"> -->
+  <div class="container column is-fluid is-one-third">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <img src="<%= post.image %>" alt="<%= user.username %>'s post">
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-96x96">
+            <img src="<%= user.avatar %> " alt="<%= user.username %>'s avatar">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title is-4"><%= user.fullName %> </p>
+          <p class="subtitle is-6">@<%= user.username %> </p>
+        </div>
+      </div>
+      <div class="content">
+        <%= post.caption %> 
+        <a href="#">#css</a> <a href="#">#responsive</a>
+        <br>
+        <time><%= (post.createdAt).toLocaleString() %></time>
+      </div>
+    </div>
+  </div>
+  </div>
 <% }) %>
+</div>
 </body>
 </html>

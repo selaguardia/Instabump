@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const { User, Post } = require("../models");
 
 // Index Route
@@ -28,8 +27,8 @@ router.get("/:id", (req, res, next) => {
       return next();
     }
     Post.find({user: req.params.id}, (error, allPosts) => {
-      console.log("found user", foundUser);
-      console.log("found post", allPosts);
+      // console.log("found user", foundUser);
+      // console.log("found posts", allPosts);
       if (error) {
         console.log(error);
         req.error = error;

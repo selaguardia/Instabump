@@ -18,45 +18,16 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://pbs.twimg.com/profile_images/1237550450/mstom_400x400.jpg",
+    default: "https://www.sibberhuuske.nl/wp-content/uploads/2016/10/default-avatar.png",
   },
   fullName: {
     type: String,
     required: [true, "Please enter your full name."]
   }
 },
-  {
-    timestamps: true
-  
-  },
+  {timestamps: true}
 );
 
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
-
-// Seed Data
-/* [
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 1",
-    avatar: "https://picsum.photos/200",
-    fullName: "John Smith"
-  },
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 2",
-    avatar: "https://picsum.photos/200",
-    fullName: "Sam Smith"
-  },
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 3",
-    avatar: "https://picsum.photos/200",
-    fullName: "Will Smith"
-  },
-] */
