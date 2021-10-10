@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<%- include( '../partials/head/_head.ejs' , { page: 'Post' } ) %>
+<%- include( '../partials/head/_head.ejs' , { page: 'My Profile' } ) %>
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
@@ -14,25 +14,15 @@
   <div class="card">
     <div class="card-image">
       <figure class="image">
-        <img src="<%= post.image %>" alt="<%= user.username %>'s post">
+        <a href="../posts/<%= post.id %> ">
+          <img src="<%= post.image %>" alt="<%= user.username %>'s post">
+        </a>
       </figure>
     </div>
     <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-96x96">
-            <img src="<%= user.avatar %> " alt="<%= user.username %>'s avatar">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title is-4"><%= user.fullName %> </p>
-          <p class="subtitle is-6">@<%= user.username %> </p>
-        </div>
-      </div>
       <div class="content">
-        <%= post.caption %> 
-        <a href="#">#css</a> <a href="#">#responsive</a>
-        <br>
+        <p><%= post.caption %></p> 
+        <p><%= post.bumpCount.length %> </p>
         <time><%= (post.createdAt).toLocaleString() %></time>
       </div>
     </div>
