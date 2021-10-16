@@ -1,17 +1,78 @@
 <!DOCTYPE html>    
 <html lang="en">
-<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Public Feed' } ) %> 
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<% posts.forEach(post => { %>
-  <img src=" <%= post.user.avatar %> " alt="user name">
-  <p><%= post.user.fullName %></p>
-  <a href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
-  <img src="<%= post.image %>" alt="user name">
-  <a href="/posts/<%= post._id %>"><%= post.caption %></a>
-  <time><%= new Date(post.createdAt).toLocaleString() %></time>
-<% }) %>
+  <div class="columns body-columns">
+    <div class="column is-half is-offset-one-quarter">
+    <% posts.forEach(post => { %>
+      <div class="card my-6">
+          <div class="header">
+              <div class="media">
+                  <div class="media-left">
+                      <figure class="image is-48x48">
+                          <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
+                      </figure>
+                  </div>
+                  <div class="media-content">
+                      <p class="title is-4"><%= post.user.fullName %></p>
+                      <p class="subtitle is-6">@<%= post.user.username %></p>
+                  </div>
+              </div>
+          </div>
+          <div class="card-image">
+              <figure class="image is-4by3">
+                  <img src="<%= post.image %>" alt="Placeholder image">
+              </figure>
+          </div>
+          <div class="card-content">
+              <div class="level is-mobile">
+                  <div class="level-left">
+                      <div class="level-item has-text-centered">
+                          <a href="">
+                              <i class="material-icons">favorite_border</i>
+                          </a>
+                      </div>
+                      <div class="level-item has-text-centered">
+                          <div>
+                              <a href="">
+                                  <i class="material-icons">chat_bubble_outline</i>
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
 
+              <div class="content">
+                  <p>
+                      <strong><%= post.bumpCount.length %></strong>
+                  </p>
+                  <p><%= post.caption %> </p>
+                  <br>
+                  <time><%= new Date(post.createdAt).toLocaleString() %></time>
+              </div>
+          </div>
+          <div class="card-footer">
+              <div class="columns is-mobile">
+                  <div class="column is-11">
+                      <div class="field">
+                          <div class="control">
+                              <input class="input is-medium" type="text" placeholder="Add a comment . . .">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="column has-text-centered">
+                      <button class="button">
+                          <i class="material-icons">more_horiz</i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <% }) %>
+    
+  <div class="column is-half is-offset-one-quarter">
+<div class="columns body-columns">
 </body>
 </html>
