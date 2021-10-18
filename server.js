@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", controllers.auth);
-app.use("/posts", authRequired, controllers.post);
+app.use("/posts", controllers.post);
 app.use("/users", authRequired, controllers.user);
 
 // 404 Route
