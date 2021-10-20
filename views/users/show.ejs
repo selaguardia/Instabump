@@ -4,7 +4,12 @@
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-
+<section class="section is-medium has-background-primary mb-6">
+  <h1 class="title"><%= user.username %>'s Profile</h1>
+  <h2 class="subtitle">
+    A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+  </h2>
+</section>
 
 <div class="columns">
 <% post.forEach(post=> { %>

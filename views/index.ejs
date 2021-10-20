@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
-<%- include( './partials/head/_head.ejs' , { page: '404' } ) %>
+<%- include( './partials/head/_head.ejs' , { page: 'Home' } ) %>
 <body>
 <%- include('./partials/navbar/_navbar', { routes } ) %>
 
-<p>All Posts</p>
-<% for(let idx = 0; idx < posts.length; idx++){ %> <% const post =
-posts[idx] %>
-<img src="<%= post.image %>" alt="Placeholder image" />
 
-<a href="/posts/<%= post.id %>"><%= post.caption %> </a>
-<p><%= post.bumpCount %> bumps</p>
-
-<% } %>
-
+<section class="hero is-primary is-medium">
+  <div class="hero-body">
+    <p class="title">
+      Welcome to PicBump!
+    </p>
+    <!-- <figure class="image is-128x128">
+      <img src="../public/assets/splash.jpg">
+    </figure> -->
+    <img class="image is-3by2" src="splash.jpg" alt="splash">
+    <!-- <div class="container is-fluid">
+    </div> -->
+  </div>
+</section>
 </body>
 </html>

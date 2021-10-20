@@ -55,8 +55,14 @@ const authRequired = function (req, res, next) {
 };
 
 // Routes
+// app.get("/", (req, res) => {
+//   res.redirect("/posts");
+// });
+
 app.get("/", (req, res) => {
-  res.redirect("/posts");
+  const currentUser = {id: req.session.currentUser.id}
+  console.log("#####", currentUser.id)
+  res.render("index.ejs", currentUser);
 });
 
 app.use("/", controllers.auth);
@@ -66,7 +72,8 @@ app.use("/users", authRequired, controllers.user);
 // 404 Route
 app.get("/*", (req, res) => {
   const context = {error: req.error};
-  return res.render("404", context);
+  const currentUser = {id: req.session.currentUser.id}
+  return res.render("404", context, currentUser);
 });
 
 // Tell the app to listen on port 4000
