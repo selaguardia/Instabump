@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <%- include( './partials/head/_head.ejs' , { page: 'Home' } ) %>
-<body>
+<body class="has-background-primary">
 <%- include('./partials/navbar/_navbar', { routes } ) %>
 
-
-<section class="hero is-primary is-medium">
-  <div class="hero-body">
-    <p class="title">
-      Welcome to PicBump!
-    </p>
-    <!-- <figure class="image is-128x128">
-      <img src="../public/assets/splash.jpg">
-    </figure> -->
-    <img class="image is-3by2" src="splash.jpg" alt="splash">
-    <!-- <div class="container is-fluid">
-    </div> -->
+<div class="columns is-centered">
+  <div class="column is-half">
+    <section class="hero is-fullheight-with-navbar">
+      <div class="hero-body">
+        <p class=""><span class="has-text-weight-bold is-size-1">Welcome to PicBump!</span>
+          <br>
+          PicBump is a place to share photos with others and Bump your favorites. What's different about PicBump is that any user can only have 3 pictures pinned to the public feed at any time, making it not a feed of the newest pictures, but instead only the ones people really want to show off!</p>
+      </div>
+    </section>
   </div>
-</section>
+  <div class="column is-one-third is-flex is-justify-items-center is-align-items-center">
+    <img class="" src="/assets/splash.jpg" alt="splash">
+  </div>
+</div>
 </body>
 </html>

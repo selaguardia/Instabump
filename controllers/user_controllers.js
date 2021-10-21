@@ -43,6 +43,9 @@ router.get("/:id", (req, res, next) => {
   });
 });
 
+// Show Route for all pinned posts by one user
+
+
 // Create Route
 router.post("/", (req, res) => {
   User.create(req.body, (error, createdUser) => {

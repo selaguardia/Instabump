@@ -6,12 +6,12 @@
 
 <section class="section is-medium has-background-primary mb-6">
   <h1 class="title"><%= user.username %>'s Profile</h1>
-  <h2 class="subtitle">
-    A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-  </h2>
+  <figure class="image is-128x128">
+    <img class="is-rounded" src="<%= user.avatar %> " alt="user.username">
+  </figure>
 </section>
 
-<div class="columns">
+<div class="columns is-multiline">
 <% post.forEach(post=> { %>
   <!-- Image Card -->
   <!-- <div class="container column is-fluid is-one-third"> -->
