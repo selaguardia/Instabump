@@ -4,10 +4,14 @@
   padding: 0;
 }
 
+body {
+  background-color: hsl(171, 100%, 41%);
+}
+
 #splash {
   /* max-width: 700px; */
 }
 
-#splash img {
+#splash {
   border-radius: 5px;
 }

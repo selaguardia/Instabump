@@ -60,9 +60,13 @@ const authRequired = function (req, res, next) {
 // });
 
 app.get("/", (req, res) => {
-  const currentUser = {id: req.session.currentUser.id}
-  console.log("#####", currentUser.id)
-  res.render("index.ejs", currentUser);
+  if (req.session.user) {
+    const currentUser = {id: req.session.currentUser.id}
+    console.log("#####", currentUser.id)
+    res.render("index.ejs", currentUser);
+  } else {
+    res.render("index.ejs");
+  }
 });
 
 app.use("/", controllers.auth);

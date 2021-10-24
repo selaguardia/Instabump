@@ -44,7 +44,21 @@ router.get("/:id", (req, res, next) => {
 });
 
 // Show Route for all pinned posts by one user
-
+router.get("/:id/pins", (req, res, next) => {
+  User.findById(req.params.id, (error, foundUser) => {
+    if (error) {
+      console.log(error);
+      req.error = error;
+      return next();
+    }
+      const context = {
+        user: foundUser,
+        // post: allPosts,
+      };
+      
+      return res.render("users/pins", context);
+    });    
+  });
 
 // Create Route
 router.post("/", (req, res) => {

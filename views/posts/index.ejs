@@ -1,7 +1,7 @@
 <!DOCTYPE html>    
 <html lang="en">
 <%- include( '../partials/head/_head.ejs', { page: 'Public Feed' } ) %> 
-<body>
+<body class="has-background-primary">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
   <div class="columns body-columns">
@@ -12,7 +12,7 @@
               <div class="media">
                   <div class="media-left">
                       <figure class="image is-48x48">
-                          <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
+                          <img id="splash" src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
                       </figure>
                   </div>
                   <div class="media-content">

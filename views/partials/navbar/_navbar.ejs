@@ -1,8 +1,8 @@
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <h1>PicBump</h1>
+      <h1>picbump</h1>
     </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -35,7 +35,7 @@
               <a class="navbar-link"><%= user.username %> </a>
               <div class="navbar-dropdown">
                 <a href="/users/<%= user.id %>" class="navbar-item">My Pics</a>
-                <a class="navbar-item">Manage Pins</a>
+                <a href="/users/<%= user.id %>/pins/" class="navbar-item">Manage Pins</a>
                 <a href="/posts/new/" class="navbar-item ">Add A Pic</a>
               </div>
             </div>

@@ -1,14 +1,14 @@
 <!DOCTYPE html>    
 <html lang="en">
 	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+	<%- include( '../partials/head/_head.ejs', { page: 'Register' } ) %> 
 <body>
   <%- include('../partials/navbar/_navbar', { routes } ) %>
 
   <!-- <form action="/register" method="POST">
     <label for="">Register for a insta👊🏼 account:</label>
     <label>Full Name:</label>
-    <inputtype="text" name="fullName" required>
+    <input type="text" name="fullName" required>
     <label>Email:</label>
     <input type="email" name="email" required>
     <label>Password:</label>
@@ -29,59 +29,46 @@
         <div class="columns">
           <div class="column left">
             <h1 class="title is-1">picbump</h1>
-            <h2 class="subtitle colored is-4">See what people care about.</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis ex deleniti aliquam tempora libero excepturi vero soluta odio optio sed.</p>
+            <h2 class="subtitle colored is-4">Share the pics you care about.</h2>
+            <p>With picbump you can collect and share the pictures you want to show off, and see what others feel like sharing, too.</p>
           </div>
           <div class="column right has-text-centered">
             <h1 class="title is-4">Sign up today</h1>
-            <p class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit</p>
-            <form>
+            <form action="/register" method="POST">
+              
               <div class="field">
                 <div class="control">
-                  <input class="input is-medium" type="text" placeholder="Name">
+                  <input class="input is-medium" type="text" name="fullName" placeholder="Name"  required>
                 </div>
               </div>
-
               <div class="field">
                 <div class="control">
-                  <input class="input is-medium" type="email" placeholder="Email">
+                  <input class="input is-medium" type="text" name="username" placeholder="Username"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="avatar" placeholder="Avatar URL">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="email" name="email" placeholder="Email"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="password" name="password" placeholder="Password"  required>
                 </div>
               </div>
               <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
               <br />
-              <small><em>Lorem ipsum dolor sit amet consectetur.</em></small>
             </form>
           </div>
         </div>
       </div>
       <div class="column is-8 is-offset-2">
         <br>
-        <nav class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <span class="icon">
-                <i class="fab fa-twitter"></i>
-              </span> &emsp;
-              <span class="icon">
-                <i class="fab fa-facebook"></i>
-              </span> &emsp;
-              <span class="icon">
-                <i class="fab fa-instagram"></i>
-              </span> &emsp;
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span> &emsp;
-              <span class="icon">
-                <i class="fas fa-envelope"></i>
-              </span>
-            </div>
-          </div>
-          <div class="level-right">
-            <small class="level-item" style="color: var(--textLight)">
-              &copy; Super Cool Website. All Rights Reserved.
-            </small>
-          </div>
-        </nav>
       </div>
     </div>
   </section>
@@ -95,7 +82,7 @@
   }
 
   body {
-    background: var(--background);
+    background: var(--brandColor);
     height: 100vh;
     color: var(--textDark);
   }
@@ -105,7 +92,7 @@
   }
 
   .register {
-    margin-top: 10rem;
+    margin-top: 5rem;
     background: white;
     border-radius: 10px;
   }
@@ -117,6 +104,10 @@
 
   .left {
     border-right: 5px solid var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .left .title {
