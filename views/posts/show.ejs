@@ -21,14 +21,18 @@
           <div class="level-left">
               <div class="level-item has-text-centered">
                 <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                  <input id="bumpButton" type='submit' value='Bump'>
+                  <input class="button is-secondary" id="bumpButton" type='submit' value='Bump'>
                 </form>
                 <p>
-                  <strong><%= post.bumpCount.length %></strong>
+                  Total Bumps: <strong><%= post.bumpCount.length %></strong>
               </p>
               </div>
-              
-          </div>
+            </div>
+            <% if (user.id == post.user._id) { %>
+              <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+            <% } else { %>
+  
+            <% } %>
       </div>
 
       <div class="content">
@@ -36,11 +40,7 @@
           <br>
           <time>Created at <%= new Date(post.createdAt).toLocaleString() %></time>
 
-          <% if (user.id == post.user._id) { %>
-            <a href="/posts/<%= post._id%>/edit">Edit</a>
-          <% } else { %>
 
-          <% } %>
       </div>
   </div>
 </div>

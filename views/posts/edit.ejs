@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
-<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Edit Pic' } ) %> 
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<header>
-  <h1>Edit Post Page</h1>
-</header>
 
 <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
-  <% if (typeof error !== 'undefined') { %>
-    <p>Danger</p>
-    <p><%= error.message %></p>
-  <% } %>
+
     <label for="post-caption">Edit Caption</label>
     <input type="text" placeholder="Super Cool post" name="caption" id="post-caption" value='<%= post.caption %>'>
     <label for="post-image">Edit Image</label>
@@ -24,5 +18,130 @@
   <button>Delete</button>
 </form>
 
+<section class="container">
+  <div class="columns is-multiline">
+    <div class="column is-8 is-offset-2 register">
+      <div class="columns">
+        
+        <div class="column left">
+          <h1 class="title is-3">Add a new pic</h1>
+          <h2 class="subtitle colored is-4">Just add the image URL and whatever caption you want!</h2>
+          <p>You can choose to pin this picture to the main feed later on from the <a href="">My Pins</a> menu.</p>
+        </div>
+
+
+        <div class="column right has-text-centered">
+          <h1 class="title is-4">New Pic Form</h1>
+          <form action="/posts" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="text" name="image" placeholder="Image URL"  required>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="text" name="caption" placeholder="Your Caption Here" required>
+              </div>
+            </div>
+
+            <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+            <br />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="column is-8 is-offset-2">
+      <br>
+    </div>
+  </div>
+</section>
 </body>
+<style>
+:root {
+  --brandColor: hsl(166, 67%, 51%);
+  --background: rgb(247, 247, 247);
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
+
+body {
+  background: var(--brandColor);
+  height: 100vh;
+  color: var(--textDark);
+}
+
+.field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.register {
+  margin-top: 5rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.left,
+.right {
+  padding: 4.5rem;
+}
+
+.left {
+  border-right: 5px solid var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left .title {
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.left .colored {
+  color: var(--brandColor);
+  font-weight: 500;
+  margin-top: 1rem !important;
+  letter-spacing: -1px;
+}
+
+.left p {
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.right .title {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.right .description {
+  margin-top: 1rem;
+  margin-bottom: 1rem !important;
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.right small {
+  color: var(--textLight);
+}
+
+input {
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--brandColor) !important;
+  box-shadow: 0 0 0 1px var(--brandColor) !important;
+}
+
+.fab,
+.fas {
+  color: var(--textLight);
+  margin-right: 1rem;
+}
+
+</style>
+
+
 </html>
