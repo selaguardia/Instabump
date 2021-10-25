@@ -2,25 +2,18 @@
 <%- include( '../partials/head/_head.ejs', { page: 'View Post' } ) %> 
 <html>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
-
-
-<div class="card my-6">
-  <div class="header">
-      <div class="media">
-          <div class="media-left">
-              <figure class="image is-48x48">
-                  <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
-              </figure>
-          </div>
-          <div class="media-content">
-              <p class="title is-4"><%= post.user.fullName %></p>
-              <p class="subtitle is-6">@<%= post.user.username %></p>
-          </div>
+<body>
+<div class="columns body-columns">
+  <div class="column is-half is-offset-one-quarter">
+    <div class="card my-6">
+      <div class="header">
+        <div class="media">
+          <p><%= post.caption %> </p>
       </div>
   </div>
   <div class="card-image">
       <figure class="image is-4by3">
-          <img src="<%= post.image %>" alt="Placeholder image">
+          <img  src="<%= post.image %>" alt="Placeholder image">
       </figure>
   </div>
   <div class="card-content">
@@ -28,23 +21,20 @@
           <div class="level-left">
               <div class="level-item has-text-centered">
                 <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                  <input type='submit' value='Bump'>
+                  <input id="bumpButton" type='submit' value='Bump'>
                 </form>
-                  <a href="">
-                      <i class="material-icons">favorite_border</i>
-                  </a>
+                <p>
+                  <strong><%= post.bumpCount.length %></strong>
+              </p>
               </div>
               
           </div>
       </div>
 
       <div class="content">
-          <p>
-              <strong><%= post.bumpCount.length %></strong>
-          </p>
-          <p><%= post.caption %> </p>
+
           <br>
-          <time><%= new Date(post.createdAt).toLocaleString() %></time>
+          <time>Created at <%= new Date(post.createdAt).toLocaleString() %></time>
 
           <% if (user.id == post.user._id) { %>
             <a href="/posts/<%= post._id%>/edit">Edit</a>
@@ -53,7 +43,6 @@
           <% } %>
       </div>
   </div>
-  
 </div>
 
 </body>
