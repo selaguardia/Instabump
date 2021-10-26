@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<%- include( '../partials/head/_head.ejs' , { page: 'My Profile' } ) %>
-<body>
+<%- include( '../partials/head/_head.ejs' , { page: 'My Pinned Pictures' } ) %>
+<body class="has-background-primary	">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
 <section class="section is-medium has-background-primary mb-6">
@@ -11,4 +11,27 @@
   </figure>
 </section>
 
+<div class="columns is-multiline">
+<!-- Start forEach -->
+  <div class="container column is-fluid is-one-third">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <a href="../posts/">
+          <img src="" alt="'s post">
+        </a>
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        <p>Caption</p> 
+        <p>Bumps</p>
+        <time>Time</time>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- End forEach -->
+</div>
 </body>
+</html>

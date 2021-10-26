@@ -1,22 +1,30 @@
 <!DOCTYPE html>    
 <html lang="en">
-<%- include( '../partials/head/_head.ejs', { page: 'User' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'All Users' } ) %> 
 <body>
 <%- include('../partials/navbar/_navbar', { routes } ) %>
+<div class="columns is-multiline">
 
-<% users.forEach(user => { %>
-  <img src=" <%= user.avatar %> " alt="Placeholder image">
-  <p><%= user.fullName %></p>
-  <a href="/users/<%= user._id %>"> @<%= user.username %></a>
+  <% users.forEach(user => { %>
+    <div class="column is-one-third">
 
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-96x96">
+              <img src="<%= user.avatar %>" alt="<%= user.username %>">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= user.fullName %></p>
+            <p class="subtitle is-6"><a href="/users/<%= user._id %>"> @<%= user.username %></a></p>
+          </div>
+        </div>
+      </div>
 
-
-
-
-
-
-  
-<% }) %>
+    </div>
+  <% }) %>
+</div>
 
 </body>
 </html>

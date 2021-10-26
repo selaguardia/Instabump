@@ -51,10 +51,10 @@ router.get("/:id/pins", (req, res, next) => {
       req.error = error;
       return next();
     }
-      const context = {
-        user: foundUser,
-        // post: allPosts,
-      };
+    const context = {
+      user: foundUser,
+      // post: allPosts,
+    };
       
       return res.render("users/pins", context);
     });    
