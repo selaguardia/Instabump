@@ -5,14 +5,7 @@
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
 
-<form action="/posts/<%=post.id %>?_method=PUT" method="POST">
 
-    <label for="post-caption">Edit Caption</label>
-    <input type="text" placeholder="Super Cool post" name="caption" id="post-caption" value='<%= post.caption %>'>
-    <label for="post-image">Edit Image</label>
-    <input id="post-image" type="text" placeholder="http://" name="image" value="<%= post.image %>"/>
-    <button>Save</button>
-</form>
 
 <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
   <button>Delete</button>
@@ -24,27 +17,26 @@
       <div class="columns">
         
         <div class="column left">
-          <h1 class="title is-3">Add a new pic</h1>
-          <h2 class="subtitle colored is-4">Just add the image URL and whatever caption you want!</h2>
-          <p>You can choose to pin this picture to the main feed later on from the <a href="">My Pins</a> menu.</p>
+          <img src="<%= post.image %>" alt="<%= post.caption %> ">
+          <p><%= post.caption %></p>
         </div>
 
 
         <div class="column right has-text-centered">
-          <h1 class="title is-4">New Pic Form</h1>
-          <form action="/posts" method="POST">
+          <h1 class="title is-4">Edit Pic Form</h1>
+          <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
             <div class="field">
               <div class="control">
-                <input class="input is-medium" type="text" name="image" placeholder="Image URL"  required>
+                <input class="input is-medium" type="text" name="image" value="<%= post.image %>"  required>
               </div>
             </div>
             <div class="field">
               <div class="control">
-                <input class="input is-medium" type="text" name="caption" placeholder="Your Caption Here" required>
+                <input class="input is-medium" type="text" name="caption" value='<%= post.caption %>' required>
               </div>
             </div>
 
-            <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+            <button class="button is-block is-primary is-fullwidth is-medium">Save</button>
             <br />
           </form>
         </div>
