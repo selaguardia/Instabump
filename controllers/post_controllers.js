@@ -109,6 +109,8 @@ router.put("/:id", (req, res, next) => {
     });
 });
 
+
+// Bump Count Route
 router.post("/:id/updateBumper", (req, res) => {
   Post.findById(
     req.params.id,
@@ -126,7 +128,7 @@ router.post("/:id/updateBumper", (req, res) => {
         foundPost.bumpCount.push(req.session.currentUser.id);
         foundPost.save();
       }
-      return res.redirect('/posts');
+      return res.redirect(`/posts/${foundPost.id}`);
     } 
   )
 });
@@ -139,7 +141,6 @@ router.delete("/:id", (req, res, next) => {
       req.error = error;
       return next();
     }
-
     return res.redirect("/posts");
   });
 });

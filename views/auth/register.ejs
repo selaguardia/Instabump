@@ -1,76 +1,164 @@
 <!DOCTYPE html>    
 <html lang="en">
 	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+	<%- include( '../partials/head/_head.ejs', { page: 'Register' } ) %> 
 <body>
-  <nav class="navbar has-background-primary-dark has-shadow" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item has-text-white" >
-        <h1>insta👊🏼</h1>
-      </a>
-  
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-  
-    <div id="navbarBasicExample" class="navbar-menu">
-      
-      
-    </div>
-  </nav> 
-  <form action="/register" method="POST">
-    <div class="container is-max-desktop ">
-    <br><br>
-    <label for=""><h1><strong>Register for an insta👊🏼 account:</strong></h1></label>
-    <br><br>
-    <div class="field">
-      <label class="label">Full Name:</label>
-      <div class="control">
-        <input class="input" type="text" name="fullName" required>
-      </div>
-    </div>
+  <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-    <div class="field">
-      <label class="label">Email:</label>
-      <div class="control">
-        <input class="input" type="email" name="email" required>
-      </div>
-    </div>
+  <!-- <form action="/register" method="POST">
+    <label for="">Register for a insta👊🏼 account:</label>
+    <label>Full Name:</label>
+    <input type="text" name="fullName" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <label>Password:</label>
+    <input type="password" name="password" required>
+    <label>Username:</label>
+    <input type="text"  name="username" required>
+    <label>Profile URL:</label>
+    <input type="text" name="avatar" required>
+    <button>Sign up</button>
+    <button>Cancel</button>
+  </form> 
+  </body>
+-->
 
-    <div class="field">
-      <label class="label">Password:</label>
-      <div class="control ">
-        <input class="input" type="password" name="password" required>
+  <section class="container">
+    <div class="columns is-multiline">
+      <div class="column is-8 is-offset-2 register">
+        <div class="columns">
+          <div class="column left">
+            <h1 class="title is-1">picbump</h1>
+            <h2 class="subtitle colored is-4">Share the pics you care about.</h2>
+            <p>With picbump you can collect and share the pictures you want to show off, and see what others feel like sharing, too.</p>
+          </div>
+          <div class="column right has-text-centered">
+            <h1 class="title is-4">Sign up today</h1>
+            <form action="/register" method="POST">
+              
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="fullName" placeholder="Name"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="username" placeholder="Username"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="text" name="avatar" placeholder="Avatar URL">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="email" name="email" placeholder="Email"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="password" name="password" placeholder="Password"  required>
+                </div>
+              </div>
+              <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+              <br />
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="column is-8 is-offset-2">
+        <br>
       </div>
     </div>
-
-    <div class="field">
-      <label class="label">Username:</label>
-      <div class="control ">
-        <input class="input" type="text"  name="username" required>
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Profile URL:</label>
-      <div class="control">
-        <input class="input" type="text" name="avatar" required>
-      </div>
-    </div>
-
-    <div class="field is-grouped">
-      <div class="control">
-        <button class="button is-link has-background-primary-dark has-shadow">Sign up</button>
-      </div>
-      <div class="control">
-        <button class="button is-link is-light">Cancel</button>
-      </div>
-    </div>
-  </div>
-</form>
+  </section>
 </body>
+<style>
+  :root {
+    --brandColor: hsl(166, 67%, 51%);
+    --background: rgb(247, 247, 247);
+    --textDark: hsla(0, 0%, 0%, 0.66);
+    --textLight: hsla(0, 0%, 0%, 0.33);
+  }
+
+  body {
+    background: var(--brandColor);
+    height: 100vh;
+    color: var(--textDark);
+  }
+
+  .field:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  .register {
+    margin-top: 5rem;
+    background: white;
+    border-radius: 10px;
+  }
+
+  .left,
+  .right {
+    padding: 4.5rem;
+  }
+
+  .left {
+    border-right: 5px solid var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left .title {
+    font-weight: 800;
+    letter-spacing: -2px;
+  }
+
+  .left .colored {
+    color: var(--brandColor);
+    font-weight: 500;
+    margin-top: 1rem !important;
+    letter-spacing: -1px;
+  }
+
+  .left p {
+    color: var(--textLight);
+    font-size: 1.15rem;
+  }
+
+  .right .title {
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  .right .description {
+    margin-top: 1rem;
+    margin-bottom: 1rem !important;
+    color: var(--textLight);
+    font-size: 1.15rem;
+  }
+
+  .right small {
+    color: var(--textLight);
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  input:focus {
+    border-color: var(--brandColor) !important;
+    box-shadow: 0 0 0 1px var(--brandColor) !important;
+  }
+
+  .fab,
+  .fas {
+    color: var(--textLight);
+    margin-right: 1rem;
+  }
+
+</style>
+
 
 </html>

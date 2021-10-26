@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html class="has-background-primary has-shadow">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Post' } ) %> 
-
-  <body class=" has-shadow">
-        <!-- Navbar Partial -->
-        <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    
-    <section class="hero is-small has-shadow">
-      <div class="column">
-        <h1 class="title">Post Show Page</h1>
+<%- include( '../partials/head/_head.ejs', { page: 'View Post' } ) %> 
+<html>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+<body>
+<div class="columns body-columns">
+  <div class="column is-half is-offset-one-quarter">
+    <div class="card my-6">
+      <div class="header">
+        <div class="media">
+          <p><%= post.caption %> </p>
       </div>
-    </section> 
-  
-    <div class="container is-max-widescreen p-5  has-shadow">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-328x328">
-            <img src="<%= post.image %>" alt="Post img" />
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <h1>Caption: <%= post.caption %></h3>
-            <h1>Bump Count: <%= post.bumpCount.length %></h1>
-                  <div>
-                      <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                          <input type='submit' value='Bump'>
-                      </form>
-                  </div>
-          </div>
-           <% if (user.id == post.user._id) { %>
-            <div>
-              <button class="button has-background-primary-dark toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
+  </div>
+  <div class="card-image">
+      <figure class="image is-4by3">
+          <img  src="<%= post.image %>" alt="Placeholder image">
+      </figure>
+  </div>
+  <div class="card-content">
+      <div class="level is-mobile">
+          <div class="level-left">
+              <div class="level-item has-text-centered">
+                <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                  <input class="button is-secondary" id="bumpButton" type='submit' value='Bump'>
+                </form>
+                <p>
+                  Total Bumps: <strong><%= post.bumpCount.length %></strong>
+              </p>
+              </div>
             </div>
-           <% } else { %>
-
-           <% } %>
-          
-        </div>
-      </article>
-    </div>
+            <% if (user.id == post.user._id) { %>
+              <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+            <% } else { %>
   
+            <% } %>
+      </div>
+
+      <div class="content">
+
+          <br>
+          <time>Created at <%= new Date(post.createdAt).toLocaleString() %></time>
+
+
+      </div>
+  </div>
+</div>
+
 </body>
 </html>

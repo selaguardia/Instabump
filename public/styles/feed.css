@@ -1,21 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background-color: hsl(171, 100%, 41%);
-}
-
-#splash {
-  /* max-width: 700px; */
-}
-
-#splash {
-  border-radius: 5px;
-}
-
+/* 
 .body-columns {
   margin-top: 10vh;
 }
@@ -39,9 +22,4 @@ body {
 }
 .card-footer .columns .column:last-child button {
   border: none;
-} 
-
-#bumpButton {
-  margin-right: 1rem;
-
-}
+} */

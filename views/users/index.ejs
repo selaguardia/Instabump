@@ -1,32 +1,30 @@
 <!DOCTYPE html>    
 <html lang="en">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'User' } ) %> 
-<body class="has-background-primary">
-    <!-- Navbar Partial -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <div class="columns body-columns">
-      <div class="column is-half is-offset-one-quarter">
-      <% users.forEach(user => { %>
-          <div class="card">
-              <div class="header">
-                  <div class="media">
-                      <div class="media-left">
-                          <figure class="image is-48x48">
-                              <img src=" <%= user.avatar %> " alt="Placeholder image">
-                          </figure>
-                      </div>
-                      <div class="media-content">
-                          <p class=""><strong><%= user.fullName %></strong></p>
-                          <a class="" href="/users/<%= user._id %>"> @<%= user.username %></a>
-                      </div>
-                  </div>
-              </div>
+<%- include( '../partials/head/_head.ejs', { page: 'All Users' } ) %> 
+<body>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+<div class="columns is-multiline">
 
+  <% users.forEach(user => { %>
+    <div class="column is-one-third">
 
-          </div><br>
-      <% }) %>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-96x96">
+              <img src="<%= user.avatar %>" alt="<%= user.username %>">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4"><%= user.fullName %></p>
+            <p class="subtitle is-6"><a href="/users/<%= user._id %>"> @<%= user.username %></a></p>
+          </div>
+        </div>
       </div>
-  </div>
+
+    </div>
+  <% }) %>
+</div>
+
 </body>
 </html>

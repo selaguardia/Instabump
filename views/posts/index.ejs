@@ -1,44 +1,60 @@
 <!DOCTYPE html>    
 <html lang="en">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Pinned Pics' } ) %> 
 <body class="has-background-primary">
-    <!-- Navbar Partial -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
-<% posts.forEach(post => { %>
-    <div class="columns body-columns">
-        <div class="column is-half is-offset-one-quarter">
-            <div class="card">
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-left">
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+
+  <div class="columns body-columns">
+    <div class="column is-half is-offset-one-quarter">
+    <% posts.forEach(post => { %>
+      <div class="card my-6">
+          <div class="header">
+              <div class="media">
+                  <div class="media-left">
                       <figure class="image is-48x48">
-                        <img src=" <%= post.user.avatar %> " alt="Placeholder image">
+                          <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
                       </figure>
-                    </div>
-                    <div class="media-content">
+                  </div>
+                  <div class="media-content">
                       <p class="title is-4"><%= post.user.fullName %></p>
-                      <a class="subtitle is-6" href="/users/<%= post.user.id %> ">@<%= post.user.username %></a>
-                    </div>
+                      <p class="subtitle is-6">@<%= post.user.username %></p>
                   </div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img src="<%= post.image %>" alt="Placeholder image">
-                  </figure>
-                </div>
-              
-                  <div class="content">
-                    <a href="/posts/<%= post._id %>">
-                        <%= post.caption %>
-                    </a>
-                    <br>
-                    <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
-                  </div>
-                </div>
               </div>
-       
-        </div>
-    </div>
-<% }) %>   
+          </div>
+          <div class="card-image">
+              <figure class="image is-4by3">
+                <a href="/posts/<%= post._id %> ">
+                  <img src="<%= post.image %>" alt="<%= post.caption %> ">
+                </a>  
+              </figure>
+          </div>
+          <div class="card-content">
+              <div class="level is-mobile">
+                  <div class="level-left">
+                      <div class="level-item has-text-centered">
+                        <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                          <input id="bumpButton" type='submit' value='Bump'>
+                        </form>
+                        <p>
+                          <strong><%= post.bumpCount.length %></strong>
+                      </p>
+                      </div>
+                      
+                  </div>
+              </div>
+
+              <div class="content">
+
+                  <p><%= post.caption %> </p>
+                  <br>
+                  <time><%= new Date(post.createdAt).toLocaleString() %></time>
+              </div>
+          </div>
+          
+      </div>
+    <% }) %>
+    
+  <div class="column is-half is-offset-one-quarter">
+<div class="columns body-columns">
 </body>
 </html>

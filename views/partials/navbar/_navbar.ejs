@@ -1,8 +1,9 @@
-<nav class="navbar has-background-primary-dark has-shadow" role="navigation" aria-label="main navigation">
+
+<nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <div class="navbar-item has-text-white" >
-      <h1>insta👊🏼</h1>
-    </div>
+    <a class="navbar-item" href="/">
+      <h1>picbump</h1>
+    </a>
 
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -12,29 +13,54 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="buttom navbar-item" href="/posts/">
-        Pinned Feed
-      </a>
 
-      <a class="navbar-item" href="/users/<%= user.id %>">
-        Your Profile
-      </a>
-      <a class="navbar-item" href="/users/">
-        All Users
-      </a>
+    <div class="navbar-start">
+      <a href="/posts/" class="navbar-item">Pinned Pics</a>
+    <% if (typeof user !== 'undefined') { %>
+    <%  } else { %>
+    <% } %>
+
+
+
+
     </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button has-text-white has-background-primary-dark" href="/posts/new">
-            <p id="plusSymbol">+</p>
-          </a>
-          <a class="button has-text-white has-background-primary-dark" href="/logout/">
-            Log out
-          </a>
+    <% if (typeof user !== 'undefined') { %>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <!-- <a href="/users/<%= user.id %>" class="navbar-item button is-primary"><%= user.username %> </a> -->
+            <!-- Dropdown Menu -->
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link"><%= user.username %> </a>
+              <div class="navbar-dropdown">
+                <a href="/users/<%= user.id %>" class="navbar-item">My Pics</a>
+                <a href="/users/<%= user.id %>/pins/" class="navbar-item">Manage Pins</a>
+                <a href="/posts/new/" class="navbar-item ">Add A Pic</a>
+              </div>
+            </div>
+            <a href="/logout/" class="button is-primary">Log out</a>
+          </div>
         </div>
       </div>
-    </div>
+
+      <% } else { %>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="/register/" class="button is-primary">
+                <strong>Register</strong>
+              </a>
+              <a href="/login/" class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
+
+
+
   </div>
 </nav>

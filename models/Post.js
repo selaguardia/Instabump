@@ -11,7 +11,6 @@ const postSchema = new Schema({
     required: [true, "You must add an image."]
   },
   bumpCount: [{
-
     type: mongoose.Types.ObjectId,
     ref: "User",
   }],
@@ -24,37 +23,8 @@ const postSchema = new Schema({
     ref: "User",
   }
 },
-  {timestamps: true});
+  {timestamps: true}
+);
 
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
-
-
-// Seed Data
-/* [
-  {
-    caption: "Photo 1",
-    bumpCount: 0,
-    image:
-      "https://picsum.photos/200",
-    isPinned: false,
-    userId: "61086233d293a47694f9c1fe",
-  },
-  {
-    caption: "Photo 2",
-    bumpCount: 0,
-    image:
-      "https://picsum.photos/200",
-    isPinned: false,
-    userId: "61086233d293a47694f9c1ff",
-  },
-  {
-    caption: "Photo 3",
-    bumpCount: 0,
-    image:
-      "https://picsum.photos/200",
-    isPinned: false,
-    userId: "61086233d293a47694f9c200",
-  },
-
-] */
