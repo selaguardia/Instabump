@@ -20,6 +20,10 @@ const userSchema = new Schema({
     type: String,
     default: "https://www.sibberhuuske.nl/wp-content/uploads/2016/10/default-avatar.png",
   },
+  pinnedPosts: [{
+    type: mongoose.Types.ObjectId,
+    ref: "Post",
+  }],
   fullName: {
     type: String,
     required: [true, "Please enter your full name."]

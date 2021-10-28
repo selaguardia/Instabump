@@ -133,6 +133,43 @@ router.post("/:id/updateBumper", (req, res) => {
   )
 });
 
+// Update Route
+router.put("/:id", (req, res, next) => {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    {$set: {...req.body}},
+    {new: true},
+    (error, updatedPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      }
+
+      return res.redirect(`/posts/${updatedPost.id}`);
+    });
+});
+
+
+// Pin Toggle Route
+router.put("/:id/togglePin", (req, res, next) => {
+  Post.findById(
+    req.params.id,
+    (error, foundPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next ();
+      }
+      foundPost.isPinned = !foundPost.isPinned;
+      foundPost.save();
+
+      return res.redirect(`/posts/${foundPost.id}`);
+    }
+  )
+});
+
+
 // Delete Route
 router.delete("/:id", (req, res, next) => {
   Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
@@ -144,5 +181,6 @@ router.delete("/:id", (req, res, next) => {
     return res.redirect("/posts");
   });
 });
+
 
 module.exports = router;
