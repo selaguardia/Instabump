@@ -52,7 +52,6 @@ router.get("/:id/pins", (req, res, next) => {
       return next();
     }
     Post.find({user: req.params.id, isPinned: true}, (error, pinnedPosts) => {
-      console.log("### Pinned Posts ###", pinnedPosts);
       if (error) {
         console.log(error);
         req.error = error;
@@ -60,36 +59,13 @@ router.get("/:id/pins", (req, res, next) => {
       }
     const context = {
       user: foundUser,
-      post: pinnedPosts,
+      posts: pinnedPosts,
     };
       
       return res.render("users/pins", context);
     });    
   });
 });
-
-
-// // Pin Toggle Route
-// router.post("/:id/togglePin", (req, res) => {
-//   Post.findById(
-//     req.params.id,
-//     (error, foundPost) => {
-//       if (error) {
-//         console.log(error);
-//         req.error = error;
-//         return next();
-//       } 
-//       if (foundPost.user.pinnedPosts.includes(foundPost._id)){
-//         foundPost.user.pinnedPosts.remove(foundPost._id);
-//         foundPost.save();
-//       } else {
-//         foundPost.user.pinnedPosts.push(foundPost._id);
-//         foundPost.save();
-//       }
-//       return res.redirect(`/posts/${foundPost._id}`);
-//     } 
-//   )
-// });
 
 
 

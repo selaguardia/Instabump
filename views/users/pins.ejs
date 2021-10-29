@@ -13,24 +13,35 @@
 
 <div class="columns is-multiline">
 <!-- Start forEach -->
+<% posts.forEach(post => { %>
+
   <div class="container column is-fluid is-one-third">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image">
-        <a href="../posts/">
-          <img src="" alt="'s post">
-        </a>
-      </figure>
-    </div>
-    <div class="card-content">
-      <div class="content">
-        <p>Caption</p> 
-        <p>Bumps</p>
-        <time>Time</time>
+    <div class="card">
+      <div class="card-image">
+        <figure class="image">
+            <img src="<%= post.image %> " alt="'s post">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content">
+          <p><%= post.caption %> </p> 
+          <p>Total Bumps: <%= post.bumpCount.length %> </p>
+          <% if (user.id == post.user._id) { %>
+            <div>
+              <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
+                <input class="button is-secondary" type='submit' value='Pin Post'>
+              </form>
+              <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+            </div>
+            <% } else { %>
+  
+            <% } %>
+        </div>
       </div>
     </div>
   </div>
-  </div>
+  
+  <% }) %> 
 <!-- End forEach -->
 </div>
 </body>
