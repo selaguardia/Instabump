@@ -4,12 +4,22 @@
 <body class="has-background-primary">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<section class="section is-medium has-background-primary mb-6">
-  <h1 class="title"><%= user.username %>'s Profile</h1>
-  <figure class="image is-128x128">
-    <img class="is-rounded" src="<%= user.avatar %> " alt="user.username">
+<section class="section">
+  <article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img class="is-rounded" src="<%= user.avatar %>" alt="user.username">
+    </p>
   </figure>
+  <div class="media-content">
+    <div class="content">
+      <h1 class="title"><%= user.username %>'s Profile</h1>
+    </div>
+  </div>
+</article>
 </section>
+
+
 
 <div class="columns is-multiline">
 <% post.forEach(post=> { %>

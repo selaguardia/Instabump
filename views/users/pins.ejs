@@ -4,11 +4,19 @@
 <body class="has-background-primary	">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<section class="section is-medium has-background-primary mb-6">
-  <h1 class="title"><%= user.username %>'s Pinned Pictures</h1>
-  <figure class="image is-128x128">
-    <img class="is-rounded" src="<%= user.avatar %> " alt="user.username">
+<section class="section">
+  <article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img class="is-rounded" src="<%= user.avatar %>" alt="user.username">
+    </p>
   </figure>
+  <div class="media-content">
+    <div class="content">
+      <h1 class="title"><%= user.username %>'s Pinned Pictures</h1>
+    </div>
+  </div>
+</article>
 </section>
 
 <div class="columns is-multiline">
@@ -27,11 +35,11 @@
           <p><%= post.caption %> </p> 
           <p>Total Bumps: <%= post.bumpCount.length %> </p>
           <% if (user.id == post.user._id) { %>
-            <div>
-              <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
-                <input class="button is-secondary" type='submit' value='Pin Post'>
-              </form>
+            <div class="is-flex is-flex-direction-row is-justify-content-space-between">
               <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+              <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
+                <input class="button is-secondary" type='submit' value='Remove Pin'>
+              </form>
             </div>
             <% } else { %>
   

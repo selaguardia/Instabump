@@ -70,7 +70,7 @@ router.post("/", (req, res, next) => {
       return next();
     }
     
-    return res.redirect(`/posts`);
+    return res.redirect(`/users/${createdPost.user}`);
   });
 });
 
@@ -173,10 +173,24 @@ router.put("/:id/togglePin", (req, res, next) => {
         req.error = error;
         return next ();
       }
-      foundPost.isPinned = !foundPost.isPinned;
-      foundPost.save();
-      console.log("### Look Here ###", foundPost.user.pinnedPosts);
-      return res.redirect(`/users/${foundPost.user.id}/pins`);
+      if (foundPost.user.pinnedPosts.includes(foundPost.id)) {
+        foundPost.user.pinnedPosts.remove(foundPost.id);
+        foundPost.isPinned = !foundPost.isPinned;
+        foundPost.save();
+        foundPost.user.save();
+        return res.redirect(`/users/${foundPost.user.id}/pins`);
+
+      } else if (!foundPost.user.pinnedPosts.includes(foundPost.id) && foundPost.user.pinnedPosts.length < 3) {
+        foundPost.user.pinnedPosts.push(foundPost.id);
+        foundPost.isPinned = !foundPost.isPinned;
+        foundPost.save();
+        foundPost.user.save();
+        return res.redirect(`/users/${foundPost.user.id}/pins`);
+
+      } else {
+        // Modal here, you must unpin one first, go to pins?
+        
+      }
     }
   )
 });

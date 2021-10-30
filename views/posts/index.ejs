@@ -1,59 +1,66 @@
 <!DOCTYPE html>    
 <html lang="en">
-<%- include( '../partials/head/_head.ejs', { page: 'Pinned Pics' } ) %> 
+<%- include( '../partials/head/_head.ejs', { page: 'Pinned Posts' } ) %> 
 <body class="has-background-primary">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-  <div class="columns body-columns">
-    <div class="column is-half is-offset-one-quarter">
-    <% posts.forEach(post => { %>
-      <div class="card my-6">
-          <div class="header">
-              <div class="media">
-                  <div class="media-left">
-                      <figure class="image is-48x48">
-                          <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
-                      </figure>
-                  </div>
-                  <div class="media-content">
-                      <p class="title is-4"><%= post.user.fullName %></p>
-                      <p class="subtitle is-6">@<%= post.user.username %></p>
-                  </div>
-              </div>
-          </div>
-          <div class="card-image">
-              <figure class="image is-4by3">
-                <a href="/posts/<%= post._id %> ">
-                  <img src="<%= post.image %>" alt="<%= post.caption %> ">
-                </a>  
-              </figure>
-          </div>
-          <div class="card-content">
-              <div class="level is-mobile">
-                  <div class="level-left">
-                      <div class="level-item has-text-centered">
-                        <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                          <input id="bumpButton" type='submit' value='Bump'>
-                        </form>
-                        <p>
-                          <strong><%= post.bumpCount.length %></strong>
-                      </p>
-                      </div>
-                      
-                  </div>
-              </div>
+<section class="section has-text-centered">
+  <h1 class="title">Pinned Posts</h1>
+  <h2 class="subtitle">
+    A feed of all the pinned posts on picbump
+  </h2>
+</section>
 
-              <div class="content">
-
-                  <p><%= post.caption %> </p>
-                  <br>
-                  <time><%= new Date(post.createdAt).toLocaleString() %></time>
+<div class="columns body-columns">
+  <div class="column is-half is-offset-one-quarter">
+  <% posts.forEach(post => { %>
+    <div class="card my-6">
+      <div class="header">
+          <div class="media">
+              <div class="media-left">
+                  <figure class="image is-48x48">
+                      <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
+                  </figure>
+              </div>
+              <div class="media-content">
+                  <p class="title is-4"><%= post.user.fullName %></p>
+                  <p class="subtitle is-6">@<%= post.user.username %></p>
               </div>
           </div>
-          
       </div>
-    <% }) %>
-    
+      <div class="card-image">
+          <figure class="image is-4by3">
+            <a href="/posts/<%= post._id %> ">
+              <img src="<%= post.image %>" alt="<%= post.caption %> ">
+            </a>  
+          </figure>
+      </div>
+      <div class="card-content">
+          <div class="level is-mobile">
+              <div class="level-left">
+                  <div class="level-item has-text-centered">
+                    <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                      <input id="bumpButton" type='submit' value='Bump'>
+                    </form>
+                    <p>
+                      <strong><%= post.bumpCount.length %></strong>
+                  </p>
+                  </div>
+                  
+              </div>
+          </div>
+
+          <div class="content">
+
+              <p><%= post.caption %> </p>
+              <br>
+              <time><%= new Date(post.createdAt).toLocaleString() %></time>
+          </div>
+      </div>
+      
+    </div>
+  <% }) %>
+  
   <div class="column is-half is-offset-one-quarter">
 <div class="columns body-columns">
 </body>
