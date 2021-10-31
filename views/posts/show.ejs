@@ -30,9 +30,12 @@
             </div>
             <% if (user.id == post.user._id) { %>
             <div>
+              <% if (post.user.pinnedPosts.length < 3) { %> 
               <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
                 <input class="button is-secondary" type='submit' value='Pin Post'>
               </form>
+              <% } else { %>
+              <% } %> 
               <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
             </div>
             <% } else { %>

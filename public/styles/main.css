@@ -44,3 +44,9 @@ body {
 #bumpButton {
   margin-right: 1rem;
 }
+
+#landing-bg {
+  background-image: url("../assets/splash.jpg");
+  background-size: cover;
+  /* filter: blur(2px); */
+}

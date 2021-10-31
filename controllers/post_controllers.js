@@ -76,7 +76,8 @@ router.post("/", (req, res, next) => {
 
 // Show Route
 router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id, (error, foundPost) => {
+  Post.findById(req.params.id).populate("user").exec( 
+    (error, foundPost) => {
     if (error) {
       console.log(error);
       req.error = error;
@@ -189,7 +190,7 @@ router.put("/:id/togglePin", (req, res, next) => {
 
       } else {
         // Modal here, you must unpin one first, go to pins?
-        
+
       }
     }
   )

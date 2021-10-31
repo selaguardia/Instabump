@@ -34,11 +34,13 @@
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link"><%= user.username %> </a>
               <div class="navbar-dropdown">
-                <a href="/users/<%= user.id %>" class="navbar-item">My Pics</a>
-                <a href="/users/<%= user.id %>/pins/" class="navbar-item">Manage Pins</a>
-                <a href="/posts/new/" class="navbar-item ">Add A Pic</a>
+                <a href="/users/<%= user.id %>" class="navbar-item">My Pictures</a>
+                <a href="/users/<%= user.id %>/pins/" class="navbar-item">My Pins</a>
+                <hr class="dropdown-divider">
+                <a href="/posts/new/" class="navbar-item ">New Picture</a>
               </div>
             </div>
+            <a href="/posts/new/" class="button is-success">New Picture</a>
             <a href="/logout/" class="button is-primary">Log out</a>
           </div>
         </div>
