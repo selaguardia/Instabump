@@ -34,9 +34,7 @@
           </form>
           <div class="columns">
             <div class="column">
-              <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
-                <button class="button is-block is-grey is-small pd-4 is-fullwidth">Delete</button>
-              </form>
+              <button id="open-modal" class="button is-block is-grey is-small pd-4 is-fullwidth">Delete</button>
             </div>
             <div class="column">
               <a href="/posts/<%=post._id %>">
@@ -52,6 +50,27 @@
     </div>
   </div>
 </section>
+
+<!-- Delete Confirmation Modal -->
+
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Permanently delete post?</p>
+      <button id="close-modal" class="delete" aria-label="close"></button>
+    </header>
+    <footer class="modal-card-foot">
+      <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
+        <button class="button is-danger mr-4">Delete Post</button>
+      </form>
+      <button id="close-modal2" class="button is-warning">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+
+
 </body>
 <style>
 :root {

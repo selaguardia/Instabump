@@ -7,49 +7,63 @@
   <div class="column is-half is-offset-one-quarter">
     <div class="card my-6">
       <div class="header">
-        <div class="media">
-          <p><%= post.caption %> </p>
-      </div>
-  </div>
-  <div class="card-image">
-      <figure class="image is-4by3">
-          <img  src="<%= post.image %>" alt="Placeholder image">
-      </figure>
-  </div>
-  <div class="card-content">
-      <div class="level is-mobile">
-          <div class="level-left">
-              <div class="level-item has-text-centered">
-                <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                  <input class="button is-secondary" id="bumpButton" type='submit' value='Bump'>
-                </form>
-                <p>
-                  Total Bumps: <strong><%= post.bumpCount.length %></strong>
-              </p>
+          <div class="media">
+              <div class="media-left">
+                  <figure class="image is-48x48">
+                      <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
+                  </figure>
               </div>
-            </div>
-            <% if (user.id == post.user._id) { %>
-            <div>
-              <% if (post.user.pinnedPosts.length < 3) { %> 
-              <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
-                <input class="button is-secondary" type='submit' value='Pin Post'>
-              </form>
-              <% } else { %>
-              <% } %> 
-              <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
-            </div>
-            <% } else { %>
-  
-            <% } %>
+              <div class="media-content">
+                  <p class="title is-4"><%= post.user.fullName %></p>
+                  <p class="subtitle is-6">@<%= post.user.username %></p>
+              </div>
+          </div>
       </div>
-
-      <div class="content">
-
+      <div class="card-image mt-1">
+          <figure class="image is-4by3">
+            <a href="/posts/<%= post._id %> ">
+              <img src="<%= post.image %>" alt="<%= post.caption %> ">
+            </a>  
+          </figure>
+      </div>
+      <div class="card-content">
+          <div class="level is-mobile">
+              <div class="level-left">
+                  <div class="level-item has-text-centered">
+                    <p><%= post.caption %> </p>
+                  </div>
+              </div>
+          </div>
           <br>
-          <time>Created at <%= new Date(post.createdAt).toLocaleString() %></time>
-
-
+          <div id="feed-bump" class="content">
+              <p>Total Bumps: <strong><%= post.bumpCount.length %></strong></p>
+              <time>Added on <%= new Date(post.createdAt).toLocaleString("en-US", {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric'
+              }) %></time>
+          </div>
+          <div id="card-buttons">
+            <div>
+              <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                <input class="button is-success" id="bumpButton" type='submit' value='Bump'>
+              </form>
+            </div>
+            <div id="pin-edit">
+              <% if (user.id == post.user._id) { %>
+                <% if (post.user.pinnedPosts.length < 3) { %> 
+                <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
+                  <input class="button is-secondary" type='submit' value='Pin Post'>
+                </form>
+                <% } else { %>
+                <% } %> 
+                <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+                <% } else { %>
+              <% } %>
+            </div>
+          </div>
       </div>
+    </div>
   </div>
 </div>
 

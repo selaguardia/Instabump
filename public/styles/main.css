@@ -42,11 +42,28 @@ body {
 } 
 
 #bumpButton {
-  margin-right: 1rem;
+
 }
 
 #landing-bg {
   background-image: url("../assets/splash.jpg");
   background-size: cover;
   /* filter: blur(2px); */
+}
+
+#feed-bump {
+  display: flex;
+  justify-content: space-between;
+}
+
+#card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#pin-edit {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }

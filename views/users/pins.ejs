@@ -4,13 +4,8 @@
 <body class="has-background-primary	">
 <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<section class="section">
+<section class="section has-text-centered">
   <article class="media">
-  <figure class="media-left">
-    <p class="image is-64x64">
-      <img class="is-rounded" src="<%= user.avatar %>" alt="user.username">
-    </p>
-  </figure>
   <div class="media-content">
     <div class="content">
       <h1 class="title"><%= user.username %>'s Pinned Pictures</h1>

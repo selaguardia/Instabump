@@ -7,7 +7,3 @@ $(".navbar-burger").click(function () {
 $(".toggle-modal").on("click", e => {
   $(".modal").toggleClass("is-active");
 });
-  
-$('#bumpButton').on('click', () => {
-  console.log('bump count =', post.bumpCount);
-});
