@@ -199,13 +199,17 @@ router.put("/:id/togglePin", (req, res, next) => {
 
 // Delete Route
 router.delete("/:id", (req, res, next) => {
-  Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+  Post.findByIdAndDelete(req.params.id).populate("user").exec(
+    (error, deletedPost) => {
+      console.log("Deleted Post User ###", deletedPost.user.pinnedPosts);
     if (error) {
       console.log(error);
       req.error = error;
       return next();
     }
-    return res.redirect("/posts");
+    // if (deletedPost.user.pinnedPosts.includes(deletedPost.id)) {
+    // }
+    return res.redirect("/posts/");
   });
 });
 
