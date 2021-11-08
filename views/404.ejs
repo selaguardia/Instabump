@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/head/_head.ejs', { page: '404' } ) %>
+<body>
+<%- include('./partials/navbar/_navbar', { routes } ) %>
+
+<p>404 Not Found</p>
+<a href="/">Back to home</a>
+<% if (error) { %>
+<!-- <p><%= error.message %></p> -->
+<% } %>
+
+</body>
+</html>

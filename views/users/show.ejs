@@ -1,63 +1,44 @@
 <!DOCTYPE html>
 <html>
+<%- include( '../partials/head/_head.ejs' , { page: 'My Profile' } ) %>
+<body class="has-background-primary">
+<%- include('../partials/navbar/_navbar', { routes } ) %>
 
-<!-- head -->
-<%- include( '../partials/head/_head.ejs' , { page: 'Post' } ) %>
+<section class="section has-text-centered">
+  <article class="media">
+  <div class="media-content">
+    <div class="content">
+      <h1 class="title"><%= user.username %>'s Pictures</h1>
+    </div>
+  </div>
+</article>
+</section>
 
 
-    <body class="has-background-primary">
-        <!-- Navbar Partial -->
-        <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-            <!-- Page Content-->
-
-            <div class="container px-4 px-lg-5 has-background-primary ">
-                <!-- Heading Row-->
-            
-                <div class="columns has-background-primary">
-                    <div class="column is-half">
-                        <img src="<%= user.avatar %>" alt="">
-                    </div>
-                    <div class="column">
-                        <h3 class="has-text-size-30"><%= user.fullName %>'s Profile</h3>
-                        <h3 class="has-text-size-30">@<%= user.username %></h3>
-                    </div>
-                  </div>
-                <!-- Call to Action-->
-                <div class="columns is-multiline">
-                    <% post.forEach(post=> { %>
-                        <!-- Content Row-->
-                        <div class="column is-one-quarter has-background-primary">
-                            <div class="card">
-                                <div class="card-image">
-                                  <figure class="image is-4by3">
-                                    <img src="<%= post.image %>" alt="Placeholder image">
-                                  </figure>
-                                </div>
-                                <div class="card-content">
-                                
-                                  <div class="content">
-                                    <a href="/posts/<%= post._id %>"><%= post.caption %></a>
-                                    <br>
-                                    <time datetime="2018-1-1"><%= new Date(post.createdAt).toLocaleString() %></time>
-                                  </div>
-                                </div>
-                              </div>
-
-                        </div>
-                <% }) %>
-            </div>
-
-            <!-- Footer-->
-            <footer class="py-5 bg-dark">
-                <div class="container px-4 px-lg-5">
-                    <p class="m-0 text-center text-white">Copyright &copy; instaBump 2021</p>
-                </div>
-            </footer>
-            <!-- Bootstrap core JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- Core theme JS-->
-            <script src="js/scripts.js"></script>
-    </body>
-
+<div class="columns is-multiline">
+<% post.forEach(post=> { %>
+  <!-- Image Card -->
+  <!-- <div class="container column is-fluid is-one-third"> -->
+  <div class="container column is-fluid is-one-third">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image">
+        <a href="../posts/<%= post.id %> ">
+          <img src="<%= post.image %>" alt="<%= user.username %>'s post">
+        </a>
+      </figure>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        <p><%= post.caption %></p> 
+        <p><%= post.bumpCount.length %> </p>
+        <time><%= (post.createdAt).toLocaleString() %></time>
+      </div>
+    </div>
+  </div>
+  </div>
+<% }) %>
+</div>
+</body>
 </html>

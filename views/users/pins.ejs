@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<%- include( '../partials/head/_head.ejs' , { page: 'My Pinned Pictures' } ) %>
+<body class="has-background-primary	">
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+
+<section class="section has-text-centered">
+  <article class="media">
+  <div class="media-content">
+    <div class="content">
+      <h1 class="title"><%= user.username %>'s Pinned Pictures</h1>
+    </div>
+  </div>
+</article>
+</section>
+
+<div class="columns is-multiline">
+<!-- Start forEach -->
+<% posts.forEach(post => { %>
+
+  <div class="container column is-fluid is-one-third">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image">
+            <img src="<%= post.image %> " alt="'s post">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content">
+          <p><%= post.caption %> </p> 
+          <p>Total Bumps: <%= post.bumpCount.length %> </p>
+          <% if (user.id == post.user._id) { %>
+            <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+              <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+              <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
+                <input class="button is-secondary" type='submit' value='Remove Pin'>
+              </form>
+            </div>
+            <% } else { %>
+  
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <% }) %> 
+<!-- End forEach -->
+</div>
+</body>
+</html>

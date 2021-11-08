@@ -2,22 +2,40 @@ const express = require("express");
 const router = express.Router();
 const { Post, User } = require("../models");
 
-// Index route
+// Index Route of All Posts
+// router.get("/", (req, res, next) => {
+//   Post.find({}).populate("user").exec( (error, allPosts) => {
+//     if (error) {
+//       console.log(error);
+//       req.error = error;
+//       return next();
+//     }
+
+//     const context = {
+//       posts: allPosts,
+//     };
+
+//     res.render("posts/index", context);
+//   });
+// });
+
+
+// Index Route of Pinned Posts
 router.get("/", (req, res, next) => {
-  Post.find({}).populate("user").exec( (error, allPosts) => {
+  Post.find({isPinned: true}).populate("user").exec( (error, pinnedPosts) => {
     if (error) {
       console.log(error);
       req.error = error;
-      return next();
+      return next ();
     }
-
     const context = {
-      posts: allPosts,
+      posts: pinnedPosts,
     };
-
+    console.log(pinnedPosts)
     res.render("posts/index", context);
   });
 });
+
 
 // Index with Populate from User
 router.get("/", (req, res, next) => {
@@ -45,7 +63,6 @@ router.get("/new", (req, res) => {
 // Create New Post Route
 router.post("/", (req, res, next) => {
   req.body.user = req.session.currentUser.id;
-
   Post.create(req.body, (error, createdPost) => {
     if (error) {
       console.log(error);
@@ -53,13 +70,14 @@ router.post("/", (req, res, next) => {
       return next();
     }
     
-    return res.redirect(`/posts`);
+    return res.redirect(`/users/${createdPost.user}`);
   });
 });
 
 // Show Route
 router.get("/:id", (req, res, next) => {
-  Post.findById(req.params.id, (error, foundPost) => {
+  Post.findById(req.params.id).populate("user").exec( 
+    (error, foundPost) => {
     if (error) {
       console.log(error);
       req.error = error;
@@ -82,8 +100,6 @@ router.get("/:id/edit", (req, res, next) => {
       req.error = error;
       return next();
     }
-    console.log(foundPost.user);
-    console.log(req.session.currentUser.id);
     const context = {
       post: foundPost,
     };
@@ -109,6 +125,8 @@ router.put("/:id", (req, res, next) => {
     });
 });
 
+
+// Bump Count Route
 router.post("/:id/updateBumper", (req, res) => {
   Post.findById(
     req.params.id,
@@ -118,7 +136,6 @@ router.post("/:id/updateBumper", (req, res) => {
         req.error = error;
         return next();
       } 
-      console.log('found post', foundPost);
       if (foundPost.bumpCount.includes(req.session.currentUser.id)){
         foundPost.bumpCount.remove(req.session.currentUser.id);
         foundPost.save();
@@ -126,22 +143,75 @@ router.post("/:id/updateBumper", (req, res) => {
         foundPost.bumpCount.push(req.session.currentUser.id);
         foundPost.save();
       }
-      return res.redirect('/posts');
+      return res.redirect(`/posts/${foundPost.id}`);
     } 
   )
 });
 
+// Update Route
+router.put("/:id", (req, res, next) => {
+  Post.findByIdAndUpdate(
+    req.params.id,
+    {$set: {...req.body}},
+    {new: true},
+    (error, updatedPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+      }
+      return res.redirect(`/posts/${updatedPost.id}`);
+    });
+});
+
+
+// Pin Toggle Route
+router.put("/:id/togglePin", (req, res, next) => {
+  Post.findById(req.params.id).populate("user").exec(
+    (error, foundPost) => {
+      if (error) {
+        console.log(error);
+        req.error = error;
+        return next ();
+      }
+      if (foundPost.user.pinnedPosts.includes(foundPost.id)) {
+        foundPost.user.pinnedPosts.remove(foundPost.id);
+        foundPost.isPinned = !foundPost.isPinned;
+        foundPost.save();
+        foundPost.user.save();
+        return res.redirect(`/users/${foundPost.user.id}/pins`);
+
+      } else if (!foundPost.user.pinnedPosts.includes(foundPost.id) && foundPost.user.pinnedPosts.length < 3) {
+        foundPost.user.pinnedPosts.push(foundPost.id);
+        foundPost.isPinned = !foundPost.isPinned;
+        foundPost.save();
+        foundPost.user.save();
+        return res.redirect(`/users/${foundPost.user.id}/pins`);
+
+      } else {
+        // Modal here, you must unpin one first, go to pins?
+
+      }
+    }
+  )
+});
+
+
 // Delete Route
 router.delete("/:id", (req, res, next) => {
-  Post.findByIdAndDelete(req.params.id, (error, deletedPost) => {
+  Post.findByIdAndDelete(req.params.id).populate("user").exec(
+    (error, deletedPost) => {
+      console.log("Deleted Post User ###", deletedPost.user.pinnedPosts);
     if (error) {
       console.log(error);
       req.error = error;
       return next();
     }
-
-    return res.redirect("/posts");
+    // if (deletedPost.user.pinnedPosts.includes(deletedPost.id)) {
+    // }
+    return res.redirect("/posts/");
   });
 });
+
 
 module.exports = router;

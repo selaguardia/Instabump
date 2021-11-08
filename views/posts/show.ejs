@@ -1,47 +1,71 @@
 <!DOCTYPE html>
-<html class="has-background-primary has-shadow">
-	<!-- head -->
-	<%- include( '../partials/head/_head.ejs', { page: 'Post' } ) %> 
-
-  <body class=" has-shadow">
-        <!-- Navbar Partial -->
-        <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    
-    <section class="hero is-small has-shadow">
-      <div class="column">
-        <h1 class="title">Post Show Page</h1>
-      </div>
-    </section> 
-  
-    <div class="container is-max-widescreen p-5  has-shadow">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-328x328">
-            <img src="<%= post.image %>" alt="Post img" />
-          </p>
-        </figure>
-        <div class="media-content">
-          <div class="content">
-            <h1>Caption: <%= post.caption %></h3>
-            <h1>Bump Count: <%= post.bumpCount.length %></h1>
-                  <div>
-                      <form method='POST' action="/posts/<%= post._id%>/updateBumper">
-                          <input type='submit' value='Bump'>
-                      </form>
-                  </div>
+<%- include( '../partials/head/_head.ejs', { page: 'View Post' } ) %> 
+<html>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+<body>
+<div class="columns body-columns">
+  <div class="column is-half is-offset-one-quarter">
+    <div class="card my-6">
+      <div class="header">
+          <div class="media">
+              <div class="media-left">
+                  <figure class="image is-48x48">
+                      <img src="<%= post.user.avatar %>" alt="<%= post.user.fullName %>'s avatar' ">
+                  </figure>
+              </div>
+              <div class="media-content">
+                  <p class="title is-4"><%= post.user.fullName %></p>
+                  <p class="subtitle is-6">@<%= post.user.username %></p>
+              </div>
           </div>
-           <% if (user.id == post.user._id) { %>
+      </div>
+      <div class="card-image mt-1">
+          <figure class="image is-4by3">
+            <a href="/posts/<%= post._id %> ">
+              <img src="<%= post.image %>" alt="<%= post.caption %> ">
+            </a>  
+          </figure>
+      </div>
+      <div class="card-content">
+          <div class="level is-mobile">
+              <div class="level-left">
+                  <div class="level-item has-text-centered">
+                    <p><%= post.caption %> </p>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <div id="feed-bump" class="content">
+              <p>Total Bumps: <strong><%= post.bumpCount.length %></strong></p>
+              <time>Added on <%= new Date(post.createdAt).toLocaleString("en-US", {
+                month: 'short',
+                day: '2-digit',
+                year: 'numeric'
+              }) %></time>
+          </div>
+          <div id="card-buttons">
             <div>
-              <button class="button has-background-primary-dark toggle-modal"><a href="/posts/<%= post._id%>/edit">Edit</a></button>
+              <form method='POST' action="/posts/<%= post._id%>/updateBumper">
+                <input class="button is-success" id="bumpButton" type='submit' value='Bump'>
+              </form>
             </div>
-           <% } else { %>
-
-           <% } %>
-          
-        </div>
-      </article>
+            <div id="pin-edit">
+              <% if (user.id == post.user._id) { %>
+                <% if (post.user.pinnedPosts.length < 3) { %> 
+                <form method='POST' action="/posts/<%= post._id %>/togglePin?_method=PUT">
+                  <input class="button is-secondary" type='submit' value='Pin Post'>
+                </form>
+                <% } else { %>
+                <% } %> 
+                <a class="button is-secondary" href="/posts/<%= post._id%>/edit">Edit</a>
+                <% } else { %>
+              <% } %>
+            </div>
+          </div>
+      </div>
     </div>
-  
+  </div>
+</div>
+
 </body>
 </html>

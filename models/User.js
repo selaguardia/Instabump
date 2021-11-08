@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Pin Limit Validator
+// function pinLimit(val) {
+//   return val.length <= 3;
+// }
+
 const userSchema = new Schema({
   email: {
     type: String,
@@ -13,50 +18,33 @@ const userSchema = new Schema({
   },
   username: {
     type: String,
-    required: [true, "Choose a user name."],
+    required: [true, "Please provide a username."],
     unique: true,
   },
   avatar: {
     type: String,
-    default: "https://pbs.twimg.com/profile_images/1237550450/mstom_400x400.jpg",
+    default: "https://picsum.photos/200",
   },
-  fullName: {
-    type: String,
-    required: [true, "Please enter your full name."]
-  }
+  pinnedPosts: [{
+    type: mongoose.Types.ObjectId,
+    ref: "Post",
+  }],
+  // pinnedPosts: {
+  //   type: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Post",
+  //   }],
+  //   validate: [pinLimit, 'You have a maximum of 3 posts pinned at any time.']
+  // },
+fullName: {
+  type: String,
+  required: [true, "Please enter your full name."]
+}
 },
-  {
-    timestamps: true
-  
-  },
+{timestamps: true}
 );
+
 
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
-
-
-// Seed Data
-/* [
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 1",
-    avatar: "https://picsum.photos/200",
-    fullName: "John Smith"
-  },
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 2",
-    avatar: "https://picsum.photos/200",
-    fullName: "Sam Smith"
-  },
-  {
-    email: "1234abcd@gmail.com",
-    password: "password",
-    username: "User 3",
-    avatar: "https://picsum.photos/200",
-    fullName: "Will Smith"
-  },
-] */
