@@ -1,97 +1,69 @@
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  background-color: hsl(171, 100%, 41%);
+}
 
-/* Full-width input fields */
-  input[type=text], input[type=password] {
+#splash {
+  /* max-width: 700px; */
+}
+
+#splash {
+  border-radius: 5px;
+}
+
+.body-columns {
+  margin-top: 10vh;
+}
+.card {
+  margin-top: 5rem;
+}
+.card .header {
+  padding: 5px 10px;
+}
+.card-footer .columns {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
+}
+.card-footer .columns input {
   border: none;
-  background: #f1f1f1;
+  border-radius: 0;
+  box-shadow: none;
 }
-
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
+.card-footer .columns .column:last-child {
+  display: flex;
+  align-items: center;
 }
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+.card-footer .columns .column:last-child button {
   border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
+} 
+
+#bumpButton {
+
 }
 
-button:hover {
-  opacity:1;
+#landing-bg {
+  background-image: url("../assets/splash.jpg");
+  background-size: cover;
+  /* filter: blur(2px); */
 }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
+#feed-bump {
+  display: flex;
+  justify-content: space-between;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
+#card-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
+#pin-edit {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-    width: 100%;
-  }
-}
-
-/* Sell it up css */
-
-.is-328x328 {
-  width: 328px;
-  height: 328px;
-}
-.is-328x328 img {
-  width: 328px;
-  height: 328px;
-  object-fit: cover;
-}
-
-a {
-  color: #673ab7;
-}
-
-.yellow {
-  color: goldenrod;
-}
-
-#plusSymbol {
-  font-size: 30px;
-  padding: 0 0 5px 0;
-}
-
-
-/*# sourceMappingURL=main.css.map */

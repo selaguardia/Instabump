@@ -1,67 +1,163 @@
 <!DOCTYPE html>
 <html>
-  <%- include( '../partials/head/_head.ejs', { page: 'Users' } ) %> 
-  <body class="has-navbar-fixed-top">
-    <!-- https://bulma.io/documentation/components/navbar/#fixed-navbar -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
-    <section class="hero is-medium has-background-light">
-      <div class="hero-body">
-        <h1 class="title">New Post Page</h1>
+<%- include( '../partials/head/_head.ejs', { page: 'Edit Pic' } ) %> 
+<body>
+<%- include('../partials/navbar/_navbar', { routes } ) %>
+
+<section class="container">
+  <div class="columns is-multiline">
+    <div class="column is-8 is-offset-2 register">
+      <div class="columns">
+        
+        <div class="column left">
+          <img src="<%= post.image %>" alt="<%= post.caption %> ">
+          <hr>
+          <h2><%= post.caption %></h2>
+        </div>
+
+
+        <div class="column right has-text-centered">
+          <h1 class="title is-4">Edit Picture</h1>
+          <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="text" name="image" value="<%= post.image %>"  required>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input class="input is-medium" type="text" name="caption" value='<%= post.caption %>' required>
+              </div>
+            </div>
+            <button class="button is-block is-success is-fullwidth is-normal">Save</button>
+            <br />
+          </form>
+          <div class="columns">
+            <div class="column">
+              <button id="open-modal" class="button is-block is-grey is-small pd-4 is-fullwidth">Delete</button>
+            </div>
+            <div class="column">
+              <a href="/posts/<%=post._id %>">
+                <button class="button is-block is-small pd-4 is-fullwidth">Cancel</button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+    <div class="column is-8 is-offset-2">
+      <br>
+    </div>
+  </div>
+</section>
 
-    <section class="container is-max-widescreen p-5">
-      <form action="/posts/<%=post.id %>?_method=PUT" method="POST">
-        <% if (typeof error !== 'undefined') { %>
-          <article class="message is-danger">
-            <div class="message-header">
-              <p>Danger</p>
-            </div>
-            <div class="message-body">
-              <%= error.message %> 
-            </div>
-          </article>
-        <% } %>
+<!-- Delete Confirmation Modal -->
 
-        <div class="field">
-          <label for="post-caption" class="label">Edit Caption</label>
-
-          <div class="control">
-            <input 
-              type="text" 
-              class="input" 
-              placeholder="Super Cool post" 
-              name="caption" 
-              id="post-caption"
-              value='<%= post.caption %>'>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="post-image" class="label">Edit Image</label>
-          <div class="control">
-            <input
-              id="post-image"
-              class="input"
-              type="text"
-              placeholder="http://"
-              name="image"
-              value="<%= post.image %>"
-            />
-          </div>
-        </div>
-
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-info">Save</button>
-          </div>
-        </div>
-      </form>
-
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Permanently delete post?</p>
+      <button id="close-modal" class="delete" aria-label="close"></button>
+    </header>
+    <footer class="modal-card-foot">
       <form action="/posts/<%=post._id %>?_method=DELETE" method="POST">
-        <button class="button is-danger m-2 navbar-item">Delete</button>
+        <button class="button is-danger mr-4">Delete Post</button>
       </form>
-      
-    </section>
-  </body>
+      <button id="close-modal2" class="button is-light is-danger">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+
+
+</body>
+<style>
+:root {
+  --brandColor: hsl(166, 67%, 51%);
+  --background: rgb(247, 247, 247);
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
+
+body {
+  background: var(--brandColor);
+  height: 100vh;
+  color: var(--textDark);
+}
+
+.field:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.register {
+  margin-top: 5rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.left,
+.right {
+  padding: 4.5rem;
+}
+
+.left {
+  border-right: 5px solid var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left .title {
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.left .colored {
+  color: var(--brandColor);
+  font-weight: 500;
+  margin-top: 1rem !important;
+  letter-spacing: -1px;
+}
+
+.left p {
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.right .title {
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.right .description {
+  margin-top: 1rem;
+  margin-bottom: 1rem !important;
+  color: var(--textLight);
+  font-size: 1.15rem;
+}
+
+.right small {
+  color: var(--textLight);
+}
+
+input {
+  font-size: 1rem;
+}
+
+input:focus {
+  border-color: var(--brandColor) !important;
+  box-shadow: 0 0 0 1px var(--brandColor) !important;
+}
+
+.fab,
+.fas {
+  color: var(--textLight);
+  margin-right: 1rem;
+}
+
+</style>
+
+
 </html>

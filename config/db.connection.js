@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
 
 require("dotenv").config();
-const connectionString = process.env.MONGODB_URI || "mongodb://localhost:27017/instaBump";
+const connectionString = process.env.MONGODB_URI || "mongodb://localhost:27017/picbump";
+// const connectionString = "mongodb://localhost:27017/picbump";
 
-mongoose.connect(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+
+mongoose.connect(connectionString);
 
 mongoose.connection.on("Connected", () => {
   console.log(`Mongoose connected to ${connectionString}`);

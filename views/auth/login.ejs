@@ -1,47 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Head partial -->
-  <%- include('../partials/head/_head', { page: 'login' } ) %>
+<!-- Head partial -->
+<%- include('../partials/head/_head', { page: 'Login' } ) %>
+<body>
+  <%- include('../partials/navbar/_navbar', { routes } ) %>
 
-  <body>
-    <!-- Navbar Partial -->
-    <%- include('../partials/navbar/_navbar', { routes } ) %>
+  <!-- <form action="/login" method="POST">
+    <label>Email</label>
+    <input name="email" type="email" placeholder="example@domain.com"/>
+    <label>Password</label>
+    <input name="password" type="password" placeholder="******"/>
+    <button>Submit</button>
+    <a href="/register">Need an account?</a>
+  </form> -->
 
-    <section class="hero is-fullheight-with-navbar is-link">
-      <div class="hero-body is-flex-direction-column">
-        <h1 class="title">Login</h1>
-        <form action="/login" method="POST" class="box">
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input
-                name="email"
-                class="input"
-                type="email"
-                placeholder="example@domain.com"
-              />
-            </div>
+
+
+  <section class="container">
+    <div class="columns is-multiline">
+      <div class="column is-8 is-offset-2 register">
+        <div class="columns">
+          <div class="column left">
+            <h1 class="title is-1">picbump</h1>
+            <h2 class="subtitle colored is-4">Share the pics you care about.</h2>
+            <p>With picbump you can collect and share the pictures you want to show off, and see what others feel like sharing, too.</p>
           </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input
-                name="password"
-                class="input"
-                type="password"
-                placeholder="******"
-              />
-            </div>
+          <div class="column right has-text-centered">
+            <h1 class="title is-4">Login to your account</h1>
+            <form action="/login" method="POST">
+
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="email" name="email" placeholder="Email"  required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input is-medium" type="password" name="password" placeholder="Password"  required>
+                </div>
+              </div>
+              <button class="button is-block is-primary is-fullwidth is-medium">Submit</button>
+              <br />
+            </form>
           </div>
-          <div class="field">
-            <div class="control">
-              <button class="button is-link is-fullwidth">Submit</button>
-            </div>
-          </div>
-          <a href="/register">Need an account?</a>
-        </form>
+        </div>
       </div>
-    </section>
-    <main class="container is-max-widescreen"></main>
-  </body>
+      <div class="column is-8 is-offset-2">
+        <br>
+      </div>
+    </div>
+  </section>
+<style>
+  :root {
+    --brandColor: hsl(166, 67%, 51%);
+    --background: rgb(247, 247, 247);
+    --textDark: hsla(0, 0%, 0%, 0.66);
+    --textLight: hsla(0, 0%, 0%, 0.33);
+  }
+
+  body {
+    background: var(--brandColor);
+    height: 100vh;
+    color: var(--textDark);
+  }
+
+  .field:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  .register {
+    margin-top: 5rem;
+    background: white;
+    border-radius: 10px;
+  }
+
+  .left,
+  .right {
+    padding: 4.5rem;
+  }
+
+  .left {
+    border-right: 5px solid var(--background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left .title {
+    font-weight: 800;
+    letter-spacing: -2px;
+  }
+
+  .left .colored {
+    color: var(--brandColor);
+    font-weight: 500;
+    margin-top: 1rem !important;
+    letter-spacing: -1px;
+  }
+
+  .left p {
+    color: var(--textLight);
+    font-size: 1.15rem;
+  }
+
+  .right .title {
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+
+  .right .description {
+    margin-top: 1rem;
+    margin-bottom: 1rem !important;
+    color: var(--textLight);
+    font-size: 1.15rem;
+  }
+
+  .right small {
+    color: var(--textLight);
+  }
+
+  input {
+    font-size: 1rem;
+  }
+
+  input:focus {
+    border-color: var(--brandColor) !important;
+    box-shadow: 0 0 0 1px var(--brandColor) !important;
+  }
+
+  .fab,
+  .fas {
+    color: var(--textLight);
+    margin-right: 1rem;
+  }
+
+</style>
+</body>
 </html>
